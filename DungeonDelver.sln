@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DungeonDelver.Core", "DungeonDelver.Core\DungeonDelver.Core.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelver.DirectX", "DungeonDelver.DirectX\DungeonDelver.DirectX.csproj", "{101B08A8-1865-47C1-BD08-85F2612FC314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolbox", "Toolbox\Toolbox.csproj", "{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DungeonDelver.Core\DungeonDelver.Core.projitems*{101b08a8-1865-47c1-bd08-85f2612fc314}*SharedItemsImports = 4
+		DungeonDelver.Core\DungeonDelver.Core.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Debug|x86.ActiveCfg = Debug|x86
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Debug|x86.Build.0 = Debug|x86
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Release|Any CPU.ActiveCfg = Release|x86
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Release|x86.ActiveCfg = Release|x86
+		{101B08A8-1865-47C1-BD08-85F2612FC314}.Release|x86.Build.0 = Release|x86
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Debug|x86.Build.0 = Debug|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Release|x86.ActiveCfg = Release|Any CPU
+		{20019883-BAAA-4B8F-8AC8-32EEE5CAD88B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C30DAEE9-3432-4BE0-BD44-4D2DE9642DE3}
+	EndGlobalSection
+EndGlobal
