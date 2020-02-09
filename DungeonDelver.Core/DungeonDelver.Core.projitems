@@ -11,7 +11,13 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Engine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Creature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\TestScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

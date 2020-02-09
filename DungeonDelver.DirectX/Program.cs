@@ -9,8 +9,8 @@ namespace DungeonDelver.DirectX
         [STAThread]
         static void Main()
         {
-            const int windowWidth = 640 * 2;
-            const int windowHeight = 384 * 2;
+            const int windowWidth = 640 * 3;
+            const int windowHeight = 384 * 3;
             const int gameWidth = 640 * 2;
             const int gameHeight = 384 * 2;
             const int scale = 1;

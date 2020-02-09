@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Toolbox.Assets;
 using Toolbox.Input;
 
@@ -26,6 +24,11 @@ namespace DungeonDelver.Core
         public static string Title { get; private set; }
 
         public static AssetStore<string> Assets { get; private set; }
+
+        private const float DefaultTimeRate = 1f;
+        public static float TimeRate = DefaultTimeRate;
+        public static float DeltaTime { get; private set; }
+        public static float RawDeltaTime { get; private set; }
 
         private RenderTarget2D _renderTarget;
         private Rectangle _renderTargetDestination;
@@ -83,9 +86,9 @@ namespace DungeonDelver.Core
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             double memBefore = GC.GetTotalMemory(false) / 1048576f;
-            DataLoader.Load();
+            DataLoader.Initialize();
             double memAfter = GC.GetTotalMemory(false) / 1048576f;
-            Console.WriteLine($"Loaded {(memAfter - memBefore):F} MB");
+            Console.WriteLine($"Loaded {memAfter - memBefore:F} MB of assets");
 
             _game = new Game();
         }
@@ -97,8 +100,11 @@ namespace DungeonDelver.Core
 
         protected override void Update(GameTime gameTime)
         {
+            RawDeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            DeltaTime = RawDeltaTime * TimeRate;
+
             _inputHandler.Update(Keyboard.GetState());
-            _game.Update();
+            _game.Update(DeltaTime);
             _upsCounter++;
 
             base.Update(gameTime);
