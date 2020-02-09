@@ -51,6 +51,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="Toolbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Toolbox.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
@@ -58,12 +62,6 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Toolbox\Toolbox.csproj">
-      <Project>{20019883-baaa-4b8f-8ac8-32eee5cad88b}</Project>
-      <Name>Toolbox</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\DungeonDelver.Core\DungeonDelver.Core.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
