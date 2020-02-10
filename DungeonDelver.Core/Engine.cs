@@ -20,7 +20,6 @@ namespace DungeonDelver.Core
         public static int WindowHeight { get; private set; }
         public static int GameWidth { get; private set; }
         public static int GameHeight { get; private set; }
-        public static int Scale { get; private set; }
         public static string Title { get; private set; }
 
         public static AssetStore<string> Assets { get; private set; }
@@ -43,17 +42,33 @@ namespace DungeonDelver.Core
         private readonly DelayedInputHandler _inputHandler = new DelayedInputHandler(20);
         private Game _game;
 
-        public Engine(int windowWidth, int windowHeight, int gameWidth, int gameHeight, int scale, string title)
+        public Engine(int gameWidth, int gameHeight, bool fullscreen, string title)
         {
             Instance = this;
             Assets = new AssetStore<string>();
             ClearColor = Color.Black;
 
-            WindowWidth = windowWidth;
-            WindowHeight = windowHeight;
-            GameWidth = gameWidth;
-            GameHeight = gameHeight;
-            Scale = scale;
+            int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+            if (fullscreen)
+            {
+                WindowWidth = screenWidth;
+                WindowHeight = screenHeight;
+            }
+            else
+            {
+                WindowWidth = screenWidth <= 1920 ? 1920 : 1280;
+                WindowHeight = screenHeight <= 1080 ? 1080: 720;
+            }
+
+            int remainderW = WindowWidth % gameWidth;
+            int remainderH = WindowHeight% gameHeight;
+            GameWidth = gameWidth + (remainderW / 2);
+            GameHeight = gameHeight + (remainderH / 2);
+
+            Console.WriteLine("Game size: " + GameWidth + "x" + GameHeight);
+
             Title = title;
 
             _graphics = new GraphicsDeviceManager(this)
@@ -67,6 +82,7 @@ namespace DungeonDelver.Core
                 PreferredDepthStencilFormat = DepthFormat.None
             };
 
+            _graphics.IsFullScreen = fullscreen;
 
             Content.RootDirectory = "Content";
             Window.Title = Title;

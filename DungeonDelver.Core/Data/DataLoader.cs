@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DungeonDelver.Core.World;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Toolbox.Graphics;
@@ -16,8 +17,11 @@ namespace DungeonDelver.Core.Data
             Spritesheet tiles = LoadSpritesheet("environment");
             Spritesheet monsters = LoadSpritesheet("monsters");
 
-            LoadSprite("wall", 0, 12, tiles);
-            LoadSprite("floor", 9, 12, tiles);
+            Sprite wallSprite = LoadSprite("wall", 0, 0, tiles);
+            Sprite floorSprite = LoadSprite("floor", 9, 0, tiles);
+
+            LoadTile(0, "wall", wallSprite, Color.Brown, true, false);
+            LoadTile(1, "floor", floorSprite, Color.Gray, false, true);
 
             LoadMonsterAnimation("player", 0, 0, monsters);
 
@@ -40,6 +44,24 @@ namespace DungeonDelver.Core.Data
             LoadMonsterAnimation("bird_b", 16, 4, monsters);
             LoadMonsterAnimation("centipede", 17, 4, monsters);
             LoadMonsterAnimation("salamander", 18, 4, monsters);
+
+        }
+
+        public static Tile LoadTile(byte id, string name, Sprite sprite, Color color, bool isSolid, bool isTransparent)
+        {
+            Tile tile;
+
+            if (Engine.Assets.Has<Tile>(name))
+            {
+                tile = Engine.Assets.GetAsset<Tile>(name);
+            }
+            else
+            {
+                tile = new Tile(id, sprite, color, isSolid, isTransparent);
+                Engine.Assets.AddAsset(name, tile);
+            }
+
+            return tile;
         }
 
         public static AnimatedSprite LoadMonsterAnimation(string name, int x, int y, Spritesheet sheet)

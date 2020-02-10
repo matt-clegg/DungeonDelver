@@ -9,13 +9,23 @@
     <Import_RootNamespace>DungeonDelver.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Actions\ActionResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Actions\BaseAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Actions\MoveAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ai\CreatureAi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Engine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\Creature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Creature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Scene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\TestScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Turns\Energy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Turns\ITurnable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Turns\TurnManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Turns\TurnResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\Controls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tile.cs" />
   </ItemGroup>

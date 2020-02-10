@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Toolbox.Graphics;
 
 namespace DungeonDelver.Core.World
@@ -9,13 +10,15 @@ namespace DungeonDelver.Core.World
 
         public byte Id { get; }
         public Sprite Sprite { get; }
+        public Color Color { get; }
         public bool IsSolid { get; }
         public bool IsTransparent { get; }
 
-        public Tile(byte id, Sprite sprite, bool isSolid, bool isTransparent)
+        public Tile(byte id, Sprite sprite, Color color, bool isSolid, bool isTransparent)
         {
             Id = id;
             Sprite = sprite;
+            Color = color;
             IsSolid = isSolid;
             IsTransparent = isTransparent;
 
