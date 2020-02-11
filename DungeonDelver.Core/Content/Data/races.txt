@@ -1,5 +1,8 @@
 ﻿:: race
 	speed = 0
 
+player :: race
+	animation = player
+
 crab :: race
-	
+	animation = crab

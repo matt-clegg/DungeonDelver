@@ -1,4 +1,5 @@
-﻿using DungeonDelver.Core.Entities.Creatures;
+﻿using DungeonDelver.Core.Ai;
+using DungeonDelver.Core.Entities.Creatures;
 using DungeonDelver.Core.Turns;
 using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
@@ -20,9 +21,18 @@ namespace DungeonDelver.Core.Scenes
         {
             _map = new Map(32, 32, 0);
 
-            AnimatedSprite animation = Engine.Assets.GetAsset<AnimatedSprite>("player");
-            _player = new Player(animation, Energy.NormalSpeed);
+            Race playerRace = Engine.Assets.GetAsset<Race>("player");
+            _player = new Player(playerRace);
             _map.Add(_player, 5, 5);
+
+            
+            Race crabRace = Engine.Assets.GetAsset<Race>("crab");
+            for (int i = 0; i < 3; i++)
+            {
+                Creature crab = new Creature(crabRace);
+                new MonsterAi(crab);
+                _map.Add(crab, 10, 10);
+            }
 
             _turnManager = new TurnManager<Creature>(_map.Creatures);
         }
@@ -50,9 +60,13 @@ namespace DungeonDelver.Core.Scenes
                 }
             }
 
-            Sprite sprite = _player.Sprite;
-            //batch.Draw(sprite.Texture, new Vector2(_player.X * Game.SpriteWidth, _player.Y * Game.SpriteHeight), sprite.Bounds, Color.White, 0, Vector2.Zero, _player.SpriteEffect, 0);
-            batch.Draw(sprite.Texture, new Vector2(_player.X * Game.SpriteWidth, _player.Y * Game.SpriteHeight), sprite.Bounds, Color.White, 0f, sprite.Origin, 1f, _player.SpriteEffect, 0);
+
+            foreach (Creature creature in _map.Creatures)
+            {
+                Sprite sprite = creature.Sprite;
+                batch.Draw(sprite.Texture, new Vector2(creature.X * Game.SpriteWidth, creature.Y * Game.SpriteHeight), sprite.Bounds, Color.White, 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
+            }
+            
         }
 
     }

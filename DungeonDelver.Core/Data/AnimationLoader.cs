@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DungeonDelver.Core.Data.Definitions;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,7 @@ namespace DungeonDelver.Core.Data
             {
                 string name = animProp.Name;
                 Spritesheet sheet = assets.GetAsset<Spritesheet>(animProp.GetOrDefault("sheet", string.Empty));
-                float frameDuration = animProp.GetOrDefault<float>("frameDuration", (input) => float.Parse(input), 0.5f);
+                float frameDuration = animProp.GetOrDefault("frameDuration", 0.5f);
 
                 string[] frames = animProp.GetOrDefault("frames", string.Empty).Split(',');
 
@@ -29,7 +30,7 @@ namespace DungeonDelver.Core.Data
                     animationFrames[i] = new AnimationFrame(sprite);
                 }
 
-                AnimatedSprite animation = new AnimatedSprite(frameDuration, animationFrames);
+                Animation animation = new Animation(frameDuration, animationFrames);
                 assets.AddAsset(name, animation);
             }
         }

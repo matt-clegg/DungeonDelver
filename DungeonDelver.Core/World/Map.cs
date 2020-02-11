@@ -32,7 +32,7 @@ namespace DungeonDelver.Core.World
             {
                 for (int y = 0; y < height; y++)
                 {
-                    SetTile(x, y, random.NextDouble() < 0.5 ? wall : floor);
+                    SetTile(x, y, random.NextDouble() < 0.3 ? wall : floor);
                 }
             }
         }
@@ -63,6 +63,22 @@ namespace DungeonDelver.Core.World
         {
             _creatures.Add(creature);
             creature.Initialise(this, x, y);
+        }
+
+        public Creature GetCreature(int x, int y)
+        {
+            if(InBounds(x, y))
+            {
+                foreach (Creature creature in Creatures)
+                {
+                    if(creature.X == x && creature.Y == y)
+                    {
+                        return creature;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

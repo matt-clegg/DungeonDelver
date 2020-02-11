@@ -14,13 +14,16 @@ namespace DungeonDelver.Core.Entities.Creatures
 
         public CreatureAi Ai { get; set; }
 
+        public Race Race { get; }
+
         private readonly AnimatedSprite _animation;
         public override Sprite Sprite => _animation.Sprite;
 
-        public Creature(AnimatedSprite animation, int speed) : base(null)
+        public Creature(Race race) : base(null)
         {
-            _animation = animation;
-            Speed = speed;
+            Race = race;
+            _animation = race.Animation.NewAnimatedSprite();
+            Speed = race.Speed;
         }
 
         public override void Update(float delta)

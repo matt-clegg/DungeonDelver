@@ -5,3 +5,6 @@
 
 player :: monsterAnimation
 	frames = player_0, player_1
+
+crab :: monsterAnimation
+	frames = crab_0, crab_1

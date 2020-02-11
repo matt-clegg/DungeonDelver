@@ -7,10 +7,9 @@ namespace DungeonDelver.Core.Entities.Creatures
 {
     public class Player : Creature
     {
-
         private BaseAction _nextAction;
 
-        public Player(AnimatedSprite animation, int speed) : base(animation, speed)
+        public Player(Race race) : base(race)
         {
         }
 

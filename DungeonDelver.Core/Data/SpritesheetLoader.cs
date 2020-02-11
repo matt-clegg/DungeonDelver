@@ -16,7 +16,7 @@ namespace DungeonDelver.Core.Data
                 string name = sheetProp.Name;
                 string sheetPath = sheetProp.GetOrDefault("path", "Content");
 
-                Texture2D texture = content.Load<Texture2D>(Path.Combine(sheetPath, name));
+                Texture2D texture = DataLoader.LoadTexture(Path.Combine(sheetPath, name));
                 Spritesheet spritesheet = new Spritesheet(name, texture);
                 assets.AddAsset(name, spritesheet);
             }

@@ -24,8 +24,26 @@ namespace DungeonDelver.Core.Actions
                 creature.SpriteEffect = _x > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             }
 
+            int newX = creature.X + _x;
+            int newY = creature.Y + _y;
+
+
+            if (creature.Map.InBounds(newX, newY) && creature.Map.GetTile(newX, newY).IsSolid)
+            {
+                return Succeed();
+            }
+
+            Creature other = creature.Map.GetCreature(newX, newY);
+
+            if(other != null)
+            {
+                return Succeed();
+            }
+
             creature.X += _x;
             creature.Y += _y;
+
+
             return Succeed();
         }
     }

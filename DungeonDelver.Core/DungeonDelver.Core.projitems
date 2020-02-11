@@ -13,7 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Actions\BaseAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions\MoveAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ai\CreatureAi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ai\MonsterAi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\AnimationLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Definitions\Animation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SpriteLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\RaceLoader.cs" />
@@ -22,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Engine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Race.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Scene.cs" />
@@ -41,9 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Data\Definitions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Content\Data\animations.txt">

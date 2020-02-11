@@ -24,3 +24,11 @@ player_0 :: monsterSprite
 player_1 :: monsterSprite
 	x = 0
 	y = 1
+
+crab_0 :: monsterSprite
+	x = 0
+	y = 4
+
+crab_1 :: monsterSprite
+	x = 0
+	y = 5
