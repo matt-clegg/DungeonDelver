@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using Toolbox.Assets;
+using Toolbox.Graphics;
 using Toolbox.Input;
 
 namespace DungeonDelver.Core
@@ -102,9 +103,12 @@ namespace DungeonDelver.Core
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             double memBefore = GC.GetTotalMemory(false) / 1048576f;
-            DataLoader.Initialize();
+            DataLoader.Load();
             double memAfter = GC.GetTotalMemory(false) / 1048576f;
             Console.WriteLine($"Loaded {memAfter - memBefore:F} MB of assets");
+
+            Texture2D mouseTexture = Content.Load<Texture2D>("Textures/mouse");
+            Mouse.SetCursor(MouseCursor.FromTexture2D(mouseTexture, 0, 0));
 
             _game = new Game();
         }

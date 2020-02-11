@@ -1,0 +1,6 @@
+﻿:: spritesheet
+	path = Textures/
+
+environment :: spritesheet
+monsters :: spritesheet
+interface :: spritesheet

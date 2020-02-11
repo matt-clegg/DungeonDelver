@@ -1,0 +1,15 @@
+﻿:: blocking
+	solid = true
+	transparent = false
+
+:: passable
+	solid = false
+	transparent = true
+
+wall :: blocking
+	sprite = wall
+	color = brown
+
+floor :: passable
+	sprite = floor
+	color = gray

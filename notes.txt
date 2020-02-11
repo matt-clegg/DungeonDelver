@@ -1,0 +1,18 @@
+
+-- Level Structure
+
+- Overworld
+	- The Village
+		- Contains a few populated buildings
+			- General Goods Store
+			- Inn
+		- NPCs guide the player along, telling the player where the entrances to the dungeons are
+	- The Decrepit Woods
+		- The woods surrounding the village
+		- Filled with vanilla creatures
+		- Contains the entrances to the various dungeons.
+
+- The dungeons
+	- There are x dungeons that can be visited
+	- Each dungeon has x levels and may contain some bonus branches
+	- Each dungeon has a theme

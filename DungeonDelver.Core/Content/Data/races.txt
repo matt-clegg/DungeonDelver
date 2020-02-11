@@ -1,0 +1,5 @@
+﻿:: race
+	speed = 0
+
+crab :: race
+	

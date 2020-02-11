@@ -1,6 +1,7 @@
 ﻿using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.IO;
 using Toolbox.Graphics;
 using Toolbox.Graphics.Animations;
@@ -10,41 +11,78 @@ namespace DungeonDelver.Core.Data
     public static class DataLoader
     {
         private const string TexturesPath = "Textures/";
+        private static readonly string FontsPath = Path.Combine(TexturesPath, "Fonts/");
         private const float AnimationFrameDuration = 0.4f;
 
-        public static void Initialize()
+        public static void Load()
         {
-            Spritesheet tiles = LoadSpritesheet("environment");
-            Spritesheet monsters = LoadSpritesheet("monsters");
+            SpritesheetLoader.Load("Content/Data/spritesheets.txt", Engine.Assets, Engine.Instance.Content);
+            SpriteLoader.Load("Content/Data/sprites.txt", Engine.Assets);
+            AnimationLoader.Load("Content/Data/animations.txt", Engine.Assets);
+            TileLoader.Load("Content/Data/tiles.txt", Engine.Assets);
 
-            Sprite wallSprite = LoadSprite("wall", 0, 0, tiles);
-            Sprite floorSprite = LoadSprite("floor", 9, 0, tiles);
+            //LoadSprite("panel_a_tl", 0, 0, ui);
+            //LoadSprite("panel_a_tr", 1, 0, ui);
+            //LoadSprite("panel_a_bl", 2, 0, ui);
+            //LoadSprite("panel_a_br", 3, 0, ui);
+            //LoadSprite("panel_a_h", 4, 0, ui);
+            //LoadSprite("panel_a_v", 5, 0, ui);
 
-            LoadTile(0, "wall", wallSprite, Color.Brown, true, false);
-            LoadTile(1, "floor", floorSprite, Color.Gray, false, true);
+            //Sprite wallSprite = LoadSprite("wall", 0, 0, tiles);
+            //Sprite floorSprite = LoadSprite("floor", 9, 0, tiles);
 
-            LoadMonsterAnimation("player", 0, 0, monsters);
+            //LoadTile(0, "wall", wallSprite, Color.Brown, true, false);
+            //LoadTile(1, "floor", floorSprite, Color.Gray, false, true);
 
-            LoadMonsterAnimation("crab", 0, 4, monsters);
-            LoadMonsterAnimation("rat", 1, 4, monsters);
-            LoadMonsterAnimation("spider", 2, 4, monsters);
-            //LoadMonsterAnimation("", 3, 4, monsters);
-            LoadMonsterAnimation("giant_rat", 4, 4, monsters);
-            LoadMonsterAnimation("pig", 5, 4, monsters);
-            LoadMonsterAnimation("bat", 6, 4, monsters);
-            //LoadMonsterAnimation("crab", 7, 4, monsters);
-            LoadMonsterAnimation("cobra", 8, 4, monsters);
-            LoadMonsterAnimation("lizard", 9, 4, monsters);
-            LoadMonsterAnimation("frog", 10, 4, monsters);
-            //LoadMonsterAnimation("crab", 11 4, monsters);
-            //LoadMonsterAnimation("crab", 12, 4, monsters);
-            LoadMonsterAnimation("cat", 13, 4, monsters);
-            //LoadMonsterAnimation("crab", 14, 4, monsters);
-            LoadMonsterAnimation("bird_a", 15, 4, monsters);
-            LoadMonsterAnimation("bird_b", 16, 4, monsters);
-            LoadMonsterAnimation("centipede", 17, 4, monsters);
-            LoadMonsterAnimation("salamander", 18, 4, monsters);
+            //LoadMonsterAnimation("player", 0, 0, monsters);
 
+            //LoadMonsterAnimation("crab", 0, 4, monsters);
+            //LoadMonsterAnimation("rat", 1, 4, monsters);
+            //LoadMonsterAnimation("spider", 2, 4, monsters);
+            ////LoadMonsterAnimation("", 3, 4, monsters);
+            //LoadMonsterAnimation("giant_rat", 4, 4, monsters);
+            //LoadMonsterAnimation("pig", 5, 4, monsters);
+            //LoadMonsterAnimation("bat", 6, 4, monsters);
+            ////LoadMonsterAnimation("crab", 7, 4, monsters);
+            //LoadMonsterAnimation("cobra", 8, 4, monsters);
+            //LoadMonsterAnimation("lizard", 9, 4, monsters);
+            //LoadMonsterAnimation("frog", 10, 4, monsters);
+            ////LoadMonsterAnimation("crab", 11 4, monsters);
+            ////LoadMonsterAnimation("crab", 12, 4, monsters);
+            //LoadMonsterAnimation("cat", 13, 4, monsters);
+            ////LoadMonsterAnimation("crab", 14, 4, monsters);
+            //LoadMonsterAnimation("bird_a", 15, 4, monsters);
+            //LoadMonsterAnimation("bird_b", 16, 4, monsters);
+            //LoadMonsterAnimation("centipede", 17, 4, monsters);
+            //LoadMonsterAnimation("salamander", 18, 4, monsters);
+
+        }
+
+        public static Vector2? ParseVector(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            string[] split = input.Trim().Split(' ', ',');
+
+            if (split.Length != 2)
+            {
+                throw new InvalidOperationException($"Invalid vector string: {input}");
+            }
+
+            if (!int.TryParse(split[0], out int x))
+            {
+                throw new InvalidOperationException($"Invalid vector string: {input}");
+            }
+
+            if (!int.TryParse(split[1], out int y))
+            {
+                throw new InvalidOperationException($"Invalid vector string: {input}");
+            }
+
+            return new Vector2(x, y);
         }
 
         public static Tile LoadTile(byte id, string name, Sprite sprite, Color color, bool isSolid, bool isTransparent)
@@ -98,6 +136,23 @@ namespace DungeonDelver.Core.Data
             else
             {
                 sprite = sheet.CutSprite(x, y, Game.SpriteWidth, Game.SpriteHeight, name, origin);
+                Engine.Assets.AddAsset(name, sprite);
+            }
+
+            return sprite;
+        }
+
+        public static Sprite LoadSprite(string name, int x, int y, int width, int height, Spritesheet sheet, Vector2? origin = null)
+        {
+            Sprite sprite;
+
+            if (Engine.Assets.Has<Sprite>(name))
+            {
+                sprite = Engine.Assets.GetAsset<Sprite>(name);
+            }
+            else
+            {
+                sprite = sheet.CutSpriteExact(x, y, width, height, name, origin);
                 Engine.Assets.AddAsset(name, sprite);
             }
 

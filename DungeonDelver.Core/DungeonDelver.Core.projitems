@@ -13,7 +13,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Actions\BaseAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions\MoveAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ai\CreatureAi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\AnimationLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SpriteLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\RaceLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SpritesheetLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\TileLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Engine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Player.cs" />
@@ -25,7 +30,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Turns\ITurnable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Turns\TurnManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Turns\TurnResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\ColorParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\Controls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\Font.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tile.cs" />
   </ItemGroup>
@@ -34,5 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Data\Definitions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\animations.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\sprites.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\races.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\spritesheets.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\tiles.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
