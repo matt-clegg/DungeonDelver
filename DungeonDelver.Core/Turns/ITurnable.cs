@@ -9,6 +9,8 @@ namespace DungeonDelver.Core.Turns
         bool GainEnergy();
         void FinishTurn();
 
+        bool IsTurning();
+
         BaseAction GetAction();
     }
 }

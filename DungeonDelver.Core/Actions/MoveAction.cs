@@ -1,4 +1,5 @@
 ﻿using DungeonDelver.Core.Entities.Creatures;
+using DungeonDelver.Core.Events;
 using DungeonDelver.Core.Turns;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,7 +16,7 @@ namespace DungeonDelver.Core.Actions
             _y = y;
         }
 
-        public override ActionResult Perform(ITurnable turnable)
+        public override ActionResult Perform(ITurnable turnable, TurnResult result)
         {
             Creature creature = turnable as Creature;
 
@@ -26,7 +27,6 @@ namespace DungeonDelver.Core.Actions
 
             int newX = creature.X + _x;
             int newY = creature.Y + _y;
-
 
             if (creature.Map.InBounds(newX, newY) && creature.Map.GetTile(newX, newY).IsSolid)
             {
@@ -40,9 +40,9 @@ namespace DungeonDelver.Core.Actions
                 return Succeed();
             }
 
+            result.AddEvent(new MoveEvent(creature, newX, newY, 4f));
             creature.X += _x;
             creature.Y += _y;
-
 
             return Succeed();
         }

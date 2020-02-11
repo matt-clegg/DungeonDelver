@@ -9,6 +9,9 @@ namespace DungeonDelver.Core.Entities.Creatures
 {
     public class Creature : Entity, ITurnable
     {
+        public int RenderX { get; set; }
+        public int RenderY { get; set; }
+
         private readonly Energy _energy = new Energy();
         public int Speed { get; }
 
@@ -64,6 +67,11 @@ namespace DungeonDelver.Core.Entities.Creatures
         protected virtual BaseAction OnGetAction()
         {
             return Ai.DecideNextAction();
+        }
+
+        public virtual bool IsTurning()
+        {
+            return false;
         }
 
     }

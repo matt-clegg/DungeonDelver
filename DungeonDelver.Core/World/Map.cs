@@ -62,6 +62,8 @@ namespace DungeonDelver.Core.World
         public void Add(Creature creature, int x, int y)
         {
             _creatures.Add(creature);
+            creature.RenderX = x * Game.SpriteWidth;
+            creature.RenderY = y * Game.SpriteHeight;
             creature.Initialise(this, x, y);
         }
 

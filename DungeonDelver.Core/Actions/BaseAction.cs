@@ -4,7 +4,7 @@ namespace DungeonDelver.Core.Actions
 {
     public abstract class BaseAction
     {
-        public abstract ActionResult Perform(ITurnable turnable);
+        public abstract ActionResult Perform(ITurnable turnable, TurnResult result);
 
         protected virtual ActionResult Fail()
         {

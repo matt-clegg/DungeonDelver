@@ -1,5 +1,6 @@
 ﻿using DungeonDelver.Core.Ai;
 using DungeonDelver.Core.Entities.Creatures;
+using DungeonDelver.Core.Events;
 using DungeonDelver.Core.Turns;
 using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,9 @@ namespace DungeonDelver.Core.Scenes
         private readonly Player _player;
         private readonly Map _map;
 
+        private readonly GameEventManager _eventManager = new GameEventManager();
         private readonly TurnManager<Creature> _turnManager;
+        private TurnResult _turnResult;
 
         public TestScene()
         {
@@ -25,7 +28,6 @@ namespace DungeonDelver.Core.Scenes
             _player = new Player(playerRace);
             _map.Add(_player, 5, 5);
 
-            
             Race crabRace = Engine.Assets.GetAsset<Race>("crab");
             for (int i = 0; i < 3; i++)
             {
@@ -45,7 +47,14 @@ namespace DungeonDelver.Core.Scenes
         public override void Update(float delta)
         {
             _map.Update(delta);
-            _turnManager.Process();
+
+            if (!_eventManager.HasEventsToProcess())
+            {
+                _turnResult = _turnManager.Process();
+                _eventManager.AddEvents(_turnResult.Events);
+            }
+
+            _eventManager.Update(delta);
         }
 
         public override void Render(SpriteBatch batch)
@@ -60,11 +69,10 @@ namespace DungeonDelver.Core.Scenes
                 }
             }
 
-
             foreach (Creature creature in _map.Creatures)
             {
                 Sprite sprite = creature.Sprite;
-                batch.Draw(sprite.Texture, new Vector2(creature.X * Game.SpriteWidth, creature.Y * Game.SpriteHeight), sprite.Bounds, creature.Color, 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
+                batch.Draw(sprite.Texture, new Vector2(creature.RenderX, creature.RenderY), sprite.Bounds, creature.Color, 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
             }
             
         }

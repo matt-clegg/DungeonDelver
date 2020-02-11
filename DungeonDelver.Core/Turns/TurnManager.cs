@@ -60,11 +60,11 @@ namespace DungeonDelver.Core.Turns
 
         private ActionResult PerformAction(BaseAction action, T turnable)
         {
-            ActionResult result = action.Perform(turnable);
+            ActionResult result = action.Perform(turnable, _turnResult);
             while (result.Alternative != null)
             {
                 action = result.Alternative;
-                result = action.Perform(turnable);
+                result = action.Perform(turnable, _turnResult);
             }
 
             return result;
@@ -94,7 +94,10 @@ namespace DungeonDelver.Core.Turns
                 }
                 else
                 {
-                    AdvanceIndex();
+                    if (!turnable.IsTurning())
+                    {
+                        AdvanceIndex();
+                    }
                 }
             }
 
