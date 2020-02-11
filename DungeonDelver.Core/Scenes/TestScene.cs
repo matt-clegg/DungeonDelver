@@ -64,7 +64,7 @@ namespace DungeonDelver.Core.Scenes
             foreach (Creature creature in _map.Creatures)
             {
                 Sprite sprite = creature.Sprite;
-                batch.Draw(sprite.Texture, new Vector2(creature.X * Game.SpriteWidth, creature.Y * Game.SpriteHeight), sprite.Bounds, Color.White, 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
+                batch.Draw(sprite.Texture, new Vector2(creature.X * Game.SpriteWidth, creature.Y * Game.SpriteHeight), sprite.Bounds, creature.Color, 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
             }
             
         }

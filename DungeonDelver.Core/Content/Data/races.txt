@@ -3,6 +3,8 @@
 
 player :: race
 	animation = player
+	color = white
 
 crab :: race
 	animation = crab
+	color = orange

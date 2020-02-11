@@ -11,8 +11,9 @@ namespace DungeonDelver.Core.Util
             { "red", Color.Red },
             { "white", Color.White },
             { "black", Color.Black },
-            { "brown", Color.Brown},
+            { "brown", Color.Brown },
             { "gray", Color.Gray },
+            { "orange", Color.Orange },
         };
 
         public static Color FromName(string name)
@@ -22,7 +23,7 @@ namespace DungeonDelver.Core.Util
                 throw new ArgumentNullException(nameof(name));
             }
 
-            if(!_colors.TryGetValue(name, out Color color))
+            if (!_colors.TryGetValue(name, out Color color))
             {
                 throw new InvalidOperationException($"Unknown color: {color}");
             }
@@ -31,3 +32,4 @@ namespace DungeonDelver.Core.Util
         }
     }
 }
+

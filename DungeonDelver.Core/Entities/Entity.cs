@@ -1,4 +1,5 @@
 ﻿using DungeonDelver.Core.World;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Toolbox.Graphics;
 
@@ -15,13 +16,16 @@ namespace DungeonDelver.Core.Entities
 
         public SpriteEffects SpriteEffect { get; set; }
         public virtual Sprite Sprite { get; }
+        public Color Color { get; }
+
         public bool ShouldRemove { get; protected set; }
         public Map Map { get; private set; }
 
-        protected Entity(Sprite sprite)
+        protected Entity(Sprite sprite, Color? color = null)
         {
             Id = _nextId++;
             Sprite = sprite;
+            Color = color ?? Color.Pink;
             ShouldRemove = false;
         }
 

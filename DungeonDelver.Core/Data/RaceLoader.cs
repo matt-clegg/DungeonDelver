@@ -1,6 +1,8 @@
 ﻿using DungeonDelver.Core.Data.Definitions;
 using DungeonDelver.Core.Entities.Creatures;
 using DungeonDelver.Core.Turns;
+using DungeonDelver.Core.Util;
+using Microsoft.Xna.Framework;
 using Toolbox.Assets;
 using Toolbox.Data;
 
@@ -17,7 +19,9 @@ namespace DungeonDelver.Core.Data
 
                 Animation animation = assets.GetAsset<Animation>(raceProp["animation"].Value);
 
-                Race race = new Race(name, animation, speed);
+                Color color = ColorParser.FromName(raceProp["color"].Value);
+
+                Race race = new Race(name, animation, color, speed);
                 assets.AddAsset(name, race);
             }
         }

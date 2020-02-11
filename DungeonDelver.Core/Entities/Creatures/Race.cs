@@ -1,8 +1,5 @@
 ﻿using DungeonDelver.Core.Data.Definitions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Toolbox.Graphics.Animations;
+using Microsoft.Xna.Framework;
 
 namespace DungeonDelver.Core.Entities.Creatures
 {
@@ -10,12 +7,14 @@ namespace DungeonDelver.Core.Entities.Creatures
     {
         public string Name { get; }
         public Animation Animation { get; }
+        public Color Color { get; }
         public int Speed { get; }
 
-        public Race(string name, Animation animation, int speed)
+        public Race(string name, Animation animation, Color color, int speed)
         {
             Name = name;
             Animation = animation;
+            Color = color;
             Speed = speed;
         }
     }

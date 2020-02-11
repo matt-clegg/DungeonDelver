@@ -19,7 +19,7 @@ namespace DungeonDelver.Core.Entities.Creatures
         private readonly AnimatedSprite _animation;
         public override Sprite Sprite => _animation.Sprite;
 
-        public Creature(Race race) : base(null)
+        public Creature(Race race) : base(null, race.Color)
         {
             Race = race;
             _animation = race.Animation.NewAnimatedSprite();
