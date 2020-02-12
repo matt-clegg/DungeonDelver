@@ -49,14 +49,15 @@ namespace DungeonDelver.Core.Entities.Creatures
             return _energy.Gain(Speed);
         }
 
-        public void FinishTurn()
+        public virtual bool FinishTurn()
         {
             if (ShouldRemove)
             {
-                return;
+                return true;
             }
 
             _energy.Spend();
+            return true;
         }
 
         public BaseAction GetAction()

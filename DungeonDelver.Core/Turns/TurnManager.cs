@@ -50,8 +50,10 @@ namespace DungeonDelver.Core.Turns
                 ActionResult result = PerformAction(action, turnable);
                 if (result.Succeeded)
                 {
-                    turnable.FinishTurn();
-                    AdvanceIndex();
+                    if (turnable.FinishTurn())
+                    {
+                        AdvanceIndex();
+                    }
                 }
             }
 

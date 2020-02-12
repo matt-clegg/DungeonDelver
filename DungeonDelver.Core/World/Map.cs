@@ -1,11 +1,13 @@
 ﻿using DungeonDelver.Core.Entities.Creatures;
+using DungeonDelver.Core.Pathfinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Toolbox;
 
 namespace DungeonDelver.Core.World
 {
-    public class Map
+    public class Map : IWeightedGraph<Point2D>
     {
         public int Width { get; }
         public int Height { get; }
@@ -15,6 +17,11 @@ namespace DungeonDelver.Core.World
 
         private readonly List<Creature> _creatures = new List<Creature>();
         public IReadOnlyList<Creature> Creatures => _creatures;
+
+        private readonly HashSet<Point2D> _visible = new HashSet<Point2D>();
+        private readonly HashSet<Point2D> _visited = new HashSet<Point2D>();
+
+        public int Area => Width * Height;
 
         public Map(int width, int height, int depth)
         {
@@ -32,7 +39,7 @@ namespace DungeonDelver.Core.World
             {
                 for (int y = 0; y < height; y++)
                 {
-                    SetTile(x, y, random.NextDouble() < 0.3 ? wall : floor);
+                    SetTile(x, y, random.NextDouble() < 0.25 ? wall : floor);
                 }
             }
         }
@@ -48,6 +55,38 @@ namespace DungeonDelver.Core.World
         }
 
         public bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < Width && y < Height;
+
+        public bool IsSolid(int x, int y) => GetTile(x, y).IsSolid;
+
+        public void SetVisible(int x, int y, bool isVisible)
+        {
+            Point2D pos = new Point2D(x, y);
+
+            if (isVisible)
+            {
+                _visible.Add(pos);
+                _visited.Add(pos);
+            }
+            else
+            {
+                _visible.Remove(pos);
+            }
+        }
+
+        public bool IsVisible(int x, int y)
+        {
+            return _visible.Contains(new Point2D(x, y));
+        }
+
+        public bool IsVisited(int x, int y)
+        {
+            return _visited.Contains(new Point2D(x, y));
+        }
+
+        public void ClearFov()
+        {
+            _visible.Clear();
+        }
 
         public Tile GetTile(int x, int y)
         {
@@ -81,6 +120,22 @@ namespace DungeonDelver.Core.World
             }
 
             return null;
+        }
+
+        public float Cost(Point2D a, Point2D b)
+        {
+            return 1f;
+        }
+
+        public IEnumerable<Point2D> GetNeighbors(Point2D origin)
+        {
+            foreach(Point2D neighbor in Direction.GetNeighbours(origin, Direction.AllDirections))
+            {
+                if(InBounds(neighbor.X, neighbor.Y) && !GetTile(neighbor.X, neighbor.Y).IsSolid)
+                {
+                    yield return neighbor;
+                }
+            }
         }
     }
 }

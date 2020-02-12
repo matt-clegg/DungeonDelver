@@ -30,6 +30,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Events\GameEventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\MoveEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\AStar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\Heuristics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\IGraph.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\IWeightedGraph.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\QueueNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Scene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\TestScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Turns\Energy.cs" />
@@ -39,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Util\ColorParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\Controls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Util\Font.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\FieldOfView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Tile.cs" />
   </ItemGroup>

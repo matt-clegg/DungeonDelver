@@ -7,7 +7,7 @@ namespace DungeonDelver.Core.Turns
         bool CanTakeTurn();
         bool IsWaitingForInput();
         bool GainEnergy();
-        void FinishTurn();
+        bool FinishTurn();
 
         bool IsTurning();
 

@@ -7,26 +7,30 @@ namespace DungeonDelver.Core.Actions
 {
     public class MoveAction : BaseAction
     {
-        private readonly int _x;
-        private readonly int _y;
+        //private readonly int _x;
+        //private readonly int _y;
+
+        public int X { get; }
+        public int Y { get; }
 
         public MoveAction(int x, int y)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
         }
 
         public override ActionResult Perform(ITurnable turnable, TurnResult result)
         {
+            System.Console.WriteLine("performing move to " + X + "," + Y);
             Creature creature = turnable as Creature;
 
-            if (_x != 0)
+            if (X != 0)
             {
-                creature.SpriteEffect = _x > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                creature.SpriteEffect = X > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             }
 
-            int newX = creature.X + _x;
-            int newY = creature.Y + _y;
+            int newX = creature.X + X;
+            int newY = creature.Y + Y;
 
             if (creature.Map.InBounds(newX, newY) && creature.Map.GetTile(newX, newY).IsSolid)
             {
@@ -35,16 +39,17 @@ namespace DungeonDelver.Core.Actions
 
             Creature other = creature.Map.GetCreature(newX, newY);
 
-            if(other != null)
+            if (other != null)
             {
                 return Succeed();
             }
 
-            result.AddEvent(new MoveEvent(creature, newX, newY, 4f));
-            creature.X += _x;
-            creature.Y += _y;
+            result.AddEvent(new MoveEvent(creature, creature.X, creature.Y, newX, newY, 4f, 0.5f));
+            creature.X += X;
+            creature.Y += Y;
 
             return Succeed();
         }
     }
 }
+

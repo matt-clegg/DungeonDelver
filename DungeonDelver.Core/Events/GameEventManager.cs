@@ -48,6 +48,7 @@ namespace DungeonDelver.Core.Events
 
                     if (gameEvent.Update(delta))
                     {
+                        System.Console.WriteLine("finished " + gameEvent.Id);
                         _toRemove.Add(gameEvent);
                     }
                 }

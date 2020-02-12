@@ -43,6 +43,8 @@ namespace DungeonDelver.Core
         private readonly DelayedInputHandler _inputHandler = new DelayedInputHandler(20);
         private Game _game;
 
+        public static int GameScale => WindowWidth / GameWidth;
+
         public Engine(int gameWidth, int gameHeight, bool fullscreen, string title)
         {
             Instance = this;
