@@ -1,0 +1,22 @@
+﻿:: environmentSprite :: sprite
+	sheet = environment
+
+wall :: environmentSprite
+	x = 0
+	y = 0
+
+wall_top :: environmentSprite
+	x = 7
+	y = 0
+
+floor :: environmentSprite
+	x = 9
+	y = 0
+
+water_0 :: environmentSprite
+	x = 0
+	y = 2
+
+water_1 :: environmentSprite
+	x = 1
+	y = 2

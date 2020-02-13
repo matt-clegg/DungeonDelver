@@ -33,9 +33,12 @@ namespace DungeonDelver.Core.Turns
             {
                 T turnable = CurrentTurnable();
 
-                if (turnable.CanTakeTurn() && turnable.IsWaitingForInput())
+                if (turnable.CanTakeTurn() )
                 {
-                    return _turnResult;
+                    if (turnable.IsWaitingForInput())
+                    {
+                        return _turnResult;
+                    }
                 }
 
                 _turnResult.MadeProgress = true;
@@ -96,10 +99,7 @@ namespace DungeonDelver.Core.Turns
                 }
                 else
                 {
-                    if (!turnable.IsTurning())
-                    {
-                        AdvanceIndex();
-                    }
+                    AdvanceIndex();
                 }
             }
 

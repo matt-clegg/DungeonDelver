@@ -4,7 +4,9 @@
 player :: race
 	animation = player
 	color = white
+	health = 10
 
 crab :: race
 	animation = crab
 	color = orange
+	health = 5

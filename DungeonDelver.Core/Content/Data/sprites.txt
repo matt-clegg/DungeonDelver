@@ -3,43 +3,4 @@
 	width = 16
 	height = 24
 
-:: environmentSprite :: sprite
-	sheet = environment
-
-:: monsterSprite :: sprite
-	sheet = monsters
-
-:: interfaceSprite :: sprite
-	sheet = interface
-
-wall :: environmentSprite
-	x = 0
-	y = 0
-
-floor :: environmentSprite
-	x = 9
-	y = 0
-
-player_0 :: monsterSprite
-	x = 0
-	y = 0
-
-player_1 :: monsterSprite
-	x = 0
-	y = 1
-
-crab_0 :: monsterSprite
-	x = 0
-	y = 4
-
-crab_1 :: monsterSprite
-	x = 0
-	y = 5
-
-tile_selection :: interfaceSprite
-	x = 6
-	y = 0
-
-dot :: interfaceSprite
-	x = 8
-	y = 0
+#include "Sprites"

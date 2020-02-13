@@ -1,8 +1,6 @@
 ﻿using DungeonDelver.Core.Actions;
 using DungeonDelver.Core.Util;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DungeonDelver.Core.Entities.Creatures
 {

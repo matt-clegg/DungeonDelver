@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DungeonDelver.Core.Actions;
+﻿using DungeonDelver.Core.Actions;
 using DungeonDelver.Core.Entities.Creatures;
+using System;
 
 namespace DungeonDelver.Core.Ai
 {
@@ -21,5 +19,6 @@ namespace DungeonDelver.Core.Ai
 
             return new MoveAction(x, y);
         }
+
     }
 }

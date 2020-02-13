@@ -22,11 +22,15 @@ namespace DungeonDelver.Core.Entities.Creatures
         private readonly AnimatedSprite _animation;
         public override Sprite Sprite => _animation.Sprite;
 
+        public int MaxHealth { get; protected set; }
+        public int Health { get; protected set; }
+
         public Creature(Race race) : base(null, race.Color)
         {
             Race = race;
             _animation = race.Animation.NewAnimatedSprite();
             Speed = race.Speed;
+            MaxHealth = Health = race.Health;
         }
 
         public override void Update(float delta)
@@ -68,11 +72,6 @@ namespace DungeonDelver.Core.Entities.Creatures
         protected virtual BaseAction OnGetAction()
         {
             return Ai.DecideNextAction();
-        }
-
-        public virtual bool IsTurning()
-        {
-            return false;
         }
 
     }

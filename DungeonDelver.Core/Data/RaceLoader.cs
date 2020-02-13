@@ -16,12 +16,13 @@ namespace DungeonDelver.Core.Data
             {
                 string name = raceProp.Name;
                 int speed = raceProp.GetOrDefault("speed", Energy.NormalSpeed);
+                int health = raceProp.GetOrDefault("health", 1);
 
                 Animation animation = assets.GetAsset<Animation>(raceProp["animation"].Value);
 
                 Color color = ColorParser.FromName(raceProp["color"].Value);
 
-                Race race = new Race(name, animation, color, speed);
+                Race race = new Race(name, animation, color, speed, health);
                 assets.AddAsset(name, race);
             }
         }

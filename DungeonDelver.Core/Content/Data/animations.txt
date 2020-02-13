@@ -1,10 +1,16 @@
-﻿
-:: monsterAnimation
+﻿:: monsterAnimation
 	sheet = monsters
 	frameDuration = 0.4
+
+:: fxAnimation
+	sheet = fx_general
 
 player :: monsterAnimation
 	frames = player_0, player_1
 
 crab :: monsterAnimation
 	frames = crab_0, crab_1
+
+rain :: fxAnimation
+	frames = rain_0, rain_1
+	frameDuration = 0.2

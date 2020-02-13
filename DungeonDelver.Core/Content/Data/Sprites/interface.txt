@@ -1,0 +1,34 @@
+﻿:: interfaceSprite :: sprite
+	sheet = interface
+
+panel_a_tl :: interfaceSprite
+	x = 0
+	y = 0
+
+panel_a_tr :: interfaceSprite
+	x = 1
+	y = 0
+
+panel_a_bl :: interfaceSprite
+	x = 2
+	y = 0
+
+panel_a_br :: interfaceSprite
+	x = 3
+	y = 0
+
+panel_a_h :: interfaceSprite
+	x = 4
+	y = 0
+
+panel_a_v :: interfaceSprite
+	x = 5
+	y = 0
+
+tile_selection :: interfaceSprite
+	x = 6
+	y = 0
+
+dot :: interfaceSprite
+	x = 8
+	y = 0

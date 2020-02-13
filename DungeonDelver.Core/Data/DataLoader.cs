@@ -15,6 +15,8 @@ namespace DungeonDelver.Core.Data
             AnimationLoader.Load("Content/Data/animations.txt", Engine.Assets);
             TileLoader.Load("Content/Data/tiles.txt", Engine.Assets);
             RaceLoader.Load("Content/Data/races.txt", Engine.Assets);
+
+            AudioLoader.Load(Engine.Assets, Engine.Instance.Content);
         }
 
         public static Vector2? ParseVector(string input)

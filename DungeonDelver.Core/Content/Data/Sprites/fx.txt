@@ -1,0 +1,22 @@
+﻿:: fxSprite :: sprite
+	sheet = fx_general
+
+rain_0 :: fxSprite
+	x = 0
+	y = 2
+
+rain_1 :: fxSprite
+	x = 1
+	y = 2
+
+splash_0 :: fxSprite
+	x = 0
+	y = 3
+
+splash_1 :: fxSprite
+	x = 1
+	y = 3
+
+splash_2 :: fxSprite
+	x = 2
+	y = 3

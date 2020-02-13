@@ -1,8 +1,5 @@
 ﻿using DungeonDelver.Core.Entities.Creatures;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DungeonDelver.Core.Events
 {
@@ -39,7 +36,6 @@ namespace DungeonDelver.Core.Events
 
         protected override void OnStart()
         {
-            Console.WriteLine("starting new event to move to " + _newX + "," + _newY);
             _start = new Vector2(_startX * Game.SpriteWidth, _startY * Game.SpriteHeight);
             _end = new Vector2(_newX * Game.SpriteWidth, _newY * Game.SpriteHeight);
             _mid = _start + (_end - _start) / 2 + new Vector2(0, -(Game.SpriteHeight * _bounceHeight));
@@ -50,7 +46,7 @@ namespace DungeonDelver.Core.Events
             if (_count < 1f)
             {
                 _count += _moveSpeed * delta;
-                if(_count > 1)
+                if (_count > 1)
                 {
                     _count = 1f;
                 }

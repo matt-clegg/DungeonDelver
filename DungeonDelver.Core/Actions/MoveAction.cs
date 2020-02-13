@@ -7,9 +7,6 @@ namespace DungeonDelver.Core.Actions
 {
     public class MoveAction : BaseAction
     {
-        //private readonly int _x;
-        //private readonly int _y;
-
         public int X { get; }
         public int Y { get; }
 
@@ -21,7 +18,6 @@ namespace DungeonDelver.Core.Actions
 
         public override ActionResult Perform(ITurnable turnable, TurnResult result)
         {
-            System.Console.WriteLine("performing move to " + X + "," + Y);
             Creature creature = turnable as Creature;
 
             if (X != 0)
@@ -32,7 +28,7 @@ namespace DungeonDelver.Core.Actions
             int newX = creature.X + X;
             int newY = creature.Y + Y;
 
-            if (creature.Map.InBounds(newX, newY) && creature.Map.GetTile(newX, newY).IsSolid)
+            if (!creature.Map.InBounds(newX, newY) || creature.Map.GetTile(newX, newY).IsSolid)
             {
                 return Succeed();
             }
@@ -44,7 +40,7 @@ namespace DungeonDelver.Core.Actions
                 return Succeed();
             }
 
-            result.AddEvent(new MoveEvent(creature, creature.X, creature.Y, newX, newY, 4f, 0.5f));
+            result.AddEvent(new MoveEvent(creature, creature.X, creature.Y, newX, newY, 4f, 0.3f));
             creature.X += X;
             creature.Y += Y;
 

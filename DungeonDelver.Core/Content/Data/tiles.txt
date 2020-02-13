@@ -7,9 +7,34 @@
 	transparent = true
 
 wall :: blocking
-	sprite = wall
 	color = brown
 
 floor :: passable
-	sprite = floor
 	color = gray
+
+tree_a :: blocking
+	color = dark_green
+
+tree_b :: blocking
+	color = 0, 94, 32
+
+tree_dead_a :: blocking
+	color = #55473d
+
+tree_dead_b :: blocking
+	color = #55473d
+
+grass_a :: passable
+	color = green
+
+grass_b :: passable
+	color = green
+
+grass_c :: passable
+	color = green
+
+grass_d :: passable
+	color = green
+
+mushrooms :: passable
+	color = #827b00

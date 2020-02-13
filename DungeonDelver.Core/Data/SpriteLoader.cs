@@ -25,6 +25,7 @@ namespace DungeonDelver.Core.Data
 
                 Sprite sprite = sheet.CutSprite(x, y, width, height, name, origin);
                 assets.AddAsset(name, sprite);
+                Console.WriteLine($"Loaded Sprite: {name}");
             }
         }
     }

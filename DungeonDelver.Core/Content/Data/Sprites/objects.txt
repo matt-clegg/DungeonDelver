@@ -1,0 +1,38 @@
+﻿:: objectSprite :: sprite
+	sheet = terrain_objects
+
+tree_a :: objectSprite
+	x = 6
+	y = 6
+
+tree_b :: objectSprite
+	x = 3
+	y = 10
+
+tree_dead_a :: objectSprite
+	x = 4
+	y = 6
+
+tree_dead_b :: objectSprite
+	x = 5
+	y = 6
+
+grass_a :: objectSprite
+	x = 0
+	y = 6
+
+grass_b :: objectSprite
+	x = 1
+	y = 6
+
+grass_c :: objectSprite
+	x = 2
+	y = 6
+
+grass_d :: objectSprite
+	x = 3
+	y = 6
+
+mushrooms :: objectSprite
+	x = 11
+	y = 6

@@ -23,8 +23,9 @@ namespace DungeonDelver.Core.Data
                 bool isTransparent = tileProp.GetOrDefault("transparent",true);
                 byte id = _nextId++;
 
-                Sprite sprite = assets.GetAsset<Sprite>(tileProp["sprite"].Value);
-                Color color = ColorParser.FromName(tileProp["color"].Value.ToLower().Trim());
+                string spriteName = tileProp.GetOrDefault("sprite", name);
+                Sprite sprite = assets.GetAsset<Sprite>(spriteName);
+                Color color = ColorParser.ParseColor(tileProp["color"].Value.ToLower().Trim());
 
                 Tile tile = new Tile(id, sprite, color, isSolid, isTransparent);
                 assets.AddAsset(name, tile);

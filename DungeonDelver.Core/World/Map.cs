@@ -29,19 +29,6 @@ namespace DungeonDelver.Core.World
             Height = height;
             Depth = depth;
             _tiles = new byte[width, height];
-
-            Tile wall = Engine.Assets.GetAsset<Tile>("wall");
-            Tile floor = Engine.Assets.GetAsset<Tile>("floor");
-
-            Random random = new Random();
-
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    SetTile(x, y, random.NextDouble() < 0.25 ? wall : floor);
-                }
-            }
         }
 
         public void Update(float delta)
@@ -93,6 +80,12 @@ namespace DungeonDelver.Core.World
             return Tile.GetTile(_tiles[x, y]);
         }
 
+        public void SetTile(int x, int y, string name)
+        {
+            Tile tile = Engine.Assets.GetAsset<Tile>(name);
+            SetTile(x, y, tile);
+        }
+
         public void SetTile(int x, int y, Tile tile)
         {
             _tiles[x, y] = tile.Id;
@@ -137,5 +130,15 @@ namespace DungeonDelver.Core.World
                 }
             }
         }
+
+#if DEBUG
+        public Map Clone()
+        {
+            Map map = new Map(Width, Height, Depth);
+            Array.Copy(_tiles, map._tiles, _tiles.Length);
+            return map;
+        }
+#endif
+
     }
 }

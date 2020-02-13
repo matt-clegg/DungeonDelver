@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using Toolbox.Assets;
-using Toolbox.Graphics;
 using Toolbox.Input;
 
 namespace DungeonDelver.Core
@@ -62,11 +61,11 @@ namespace DungeonDelver.Core
             else
             {
                 WindowWidth = screenWidth <= 1920 ? 1920 : 1280;
-                WindowHeight = screenHeight <= 1080 ? 1080: 720;
+                WindowHeight = screenHeight <= 1080 ? 1080 : 720;
             }
 
             int remainderW = WindowWidth % gameWidth;
-            int remainderH = WindowHeight% gameHeight;
+            int remainderH = WindowHeight % gameHeight;
             GameWidth = gameWidth + (remainderW / 2);
             GameHeight = gameHeight + (remainderH / 2);
 
@@ -180,7 +179,9 @@ namespace DungeonDelver.Core
                 Height = WindowHeight
             };
 
-            _renderTarget = new RenderTarget2D(GraphicsDevice, GameWidth, GameHeight);
+            PresentationParameters parameters = GraphicsDevice.PresentationParameters;
+
+            _renderTarget = new RenderTarget2D(GraphicsDevice, GameWidth, GameHeight, false, parameters.BackBufferFormat, parameters.DepthStencilFormat, parameters.MultiSampleCount, RenderTargetUsage.DiscardContents);
         }
     }
 }

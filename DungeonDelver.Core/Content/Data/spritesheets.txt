@@ -4,3 +4,5 @@
 environment :: spritesheet
 monsters :: spritesheet
 interface :: spritesheet
+terrain_objects :: spritesheet
+fx_general :: spritesheet
