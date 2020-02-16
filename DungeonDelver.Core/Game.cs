@@ -1,5 +1,4 @@
 ﻿using DungeonDelver.Core.Scenes;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace DungeonDelver.Core
@@ -8,6 +7,9 @@ namespace DungeonDelver.Core
     {
         public const int SpriteWidth = 16;
         public const int SpriteHeight = 24;
+
+        public static bool HideFov = false;
+        public static bool ShowRain = true;
 
         public Scene Scene { get; set; }
 
@@ -26,9 +28,9 @@ namespace DungeonDelver.Core
             Scene?.Update(delta);
         }
 
-        public void Render(SpriteBatch batch)
+        public void Render()
         {
-            Scene?.Render(batch);
+            Scene?.Render();
         }
     }
 }

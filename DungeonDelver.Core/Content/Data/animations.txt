@@ -17,8 +17,18 @@ player :: monsterAnimation
 crab :: monsterAnimation
 	frames = crab_0, crab_1
 
+frog :: monsterAnimation
+	frames = frog_0, frog_1
+
+rat :: monsterAnimation
+	frames = rat_0, rat_1
+
 rain :: fxAnimation
 	frames = rain_0, rain_1
+	frameDuration = 0.2
+
+rain_light :: fxAnimation
+	frames = rain_light_0, rain_light_1
 	frameDuration = 0.2
 
 water :: environmentAnimation
@@ -27,8 +37,12 @@ water :: environmentAnimation
 
 lillypad_a :: terrainObjectAnimation
 	frames = lillypad_a_0, lillypad_a_1
-	frameDuration = 0.4
+	frameDuration = 1.25
 
 lillypad_b :: terrainObjectAnimation
 	frames = lillypad_b_0, lillypad_b_1
-	frameDuration = 0.4
+	frameDuration = 1.25
+
+lillypad_c :: terrainObjectAnimation
+	frames = lillypad_c_0, lillypad_c_1
+	frameDuration = 1.25

@@ -1,9 +1,11 @@
-﻿using DungeonDelver.Core.Entities.Creatures;
+﻿using DungeonDelver.Core.Entities;
+using DungeonDelver.Core.Entities.Creatures;
 using DungeonDelver.Core.Pathfinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Toolbox;
+using Toolbox.Rng;
 
 namespace DungeonDelver.Core.World
 {
@@ -13,7 +15,8 @@ namespace DungeonDelver.Core.World
         public int Height { get; }
         public int Depth { get; }
 
-        public byte[,] _tiles;
+        private readonly byte[,] _tiles;
+        private readonly Prop[,] _props;
 
         private readonly List<Creature> _creatures = new List<Creature>();
         public IReadOnlyList<Creature> Creatures => _creatures;
@@ -29,6 +32,7 @@ namespace DungeonDelver.Core.World
             Height = height;
             Depth = depth;
             _tiles = new byte[width, height];
+            _props = new Prop[width, height];
         }
 
         public void Update(float delta)
@@ -39,6 +43,14 @@ namespace DungeonDelver.Core.World
             }
 
             _creatures.RemoveAll(c => c.ShouldRemove);
+
+            for(int x = 0; x < Width; x++)
+            {
+                for(int y = 0; y < Height; y++)
+                {
+                    _props[x, y]?.Update(delta);
+                }
+            }
         }
 
         public bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < Width && y < Height;
@@ -91,6 +103,18 @@ namespace DungeonDelver.Core.World
             _tiles[x, y] = tile.Id;
         }
 
+        public void SetProp(int x, int y, Prop prop)
+        {
+            _props[x, y] = prop;
+        }
+
+        public Prop GetProp(int x, int y)
+        {
+            return _props[x, y];
+        }
+
+        public void Add(Creature creature, Point2D point) => Add(creature, point.X, point.Y);
+
         public void Add(Creature creature, int x, int y)
         {
             _creatures.Add(creature);
@@ -113,6 +137,20 @@ namespace DungeonDelver.Core.World
             }
 
             return null;
+        }
+
+        public Point2D RandomEmptyPoint(IRandom random)
+        {
+            int x;
+            int y;
+
+            do
+            {
+                x = random.Next(Width);
+                y = random.Next(Height);
+            } while (IsSolid(x, y) || GetCreature(x, y) != null);
+
+            return new Point2D(x, y);
         }
 
         public float Cost(Point2D a, Point2D b)

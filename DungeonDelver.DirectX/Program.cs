@@ -9,12 +9,17 @@ namespace DungeonDelver.DirectX
         [STAThread]
         static void Main()
         {
-            const int gameWidth = 512;
-            const int gameHeight = 256;
+            //const int gameWidth = 512;
+            //const int gameHeight = 256;
+            const int scale = 3;
+            const int width = 640;
+            const int height = 360;
+            const int windowWidth = width * scale;
+            const int windowHeight = height * scale;
             const bool fullscreen = false;
             const string title = "Dungeon Delver";
 
-            using (Engine engine = new Engine(gameWidth, gameHeight, fullscreen, title))
+            using (Engine engine = new Engine(width, height, windowWidth, windowHeight, scale, title, fullscreen))
             {
                 engine.Run();
             }
@@ -22,3 +27,4 @@ namespace DungeonDelver.DirectX
     }
 #endif
 }
+

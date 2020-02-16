@@ -1,5 +1,5 @@
 ﻿:: race
-	speed = 0
+	speed = 3
 
 player :: race
 	animation = player
@@ -10,3 +10,13 @@ crab :: race
 	animation = crab
 	color = orange
 	health = 5
+
+frog :: race
+	animation = frog
+	color = #005826
+	health = 5
+
+rat :: race
+	animation = rat
+	color = #675b55
+	health = 3

@@ -1,15 +1,12 @@
-﻿using DungeonDelver.Core.Ai;
-using DungeonDelver.Core.Audio;
-using DungeonDelver.Core.Data.Definitions;
+﻿using DungeonDelver.Core.Audio;
 using DungeonDelver.Core.Entities.Creatures;
 using DungeonDelver.Core.Events;
-using DungeonDelver.Core.Extensions;
+using DungeonDelver.Core.Renderers;
 using DungeonDelver.Core.Turns;
+using DungeonDelver.Core.Util;
 using DungeonDelver.Core.World;
 using DungeonDelver.Core.World.Builders;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Toolbox;
@@ -23,27 +20,23 @@ namespace DungeonDelver.Core.Scenes
     {
         private readonly IRandom _random;
 
+        private readonly MapRenderer _mapRenderer;
+        private readonly CreatureRenderer _creatureRenderer;
+        private readonly EffectsRenderer _effectsRenderer;
+
+        private readonly Camera _camera;
         private readonly Player _player;
         private readonly Map _map;
+        private readonly FieldOfView _fov;
 
+        private readonly LightingManager _lightingManager = new LightingManager(Color.White);
         private readonly GameEventManager _eventManager = new GameEventManager();
+        private readonly SoundEffectManager _soundEffectManager = new SoundEffectManager();
+
         private readonly TurnManager<Creature> _turnManager;
         private TurnResult _turnResult;
 
         private readonly Sprite _tileSelection;
-        private readonly Sprite _dot;
-        private readonly AnimatedSprite _rain;
-
-        private readonly FieldOfView _fov;
-
-        private readonly SoundEffectManager _soundEffectManager = new SoundEffectManager();
-
-        //private SoundEffect rainSound;
-
-        //private SoundEffectInstance thunderInstance;
-
-        private const bool HideFov = false;
-        private const bool ShowRain = true;
 
         private readonly Dictionary<string, AnimatedSprite> _tileAnimations = new Dictionary<string, AnimatedSprite>();
 
@@ -51,50 +44,50 @@ namespace DungeonDelver.Core.Scenes
         {
             _random = new DotNetRandom();
 
-            MapBuilder builder = new ForestBuilder(32, 12, 0, _random.Next());
+            MapBuilder builder = new ForestBuilder(64, 64, 0, _random.Next());
             builder.Build();
             _map = builder.Map;
             _fov = new FieldOfView(_map);
 
             Race playerRace = Engine.Assets.GetAsset<Race>("player");
             _player = new Player(playerRace);
-            _map.Add(_player, 5, 5);
+            _map.Add(_player, 32, 32);
 
-            Race crabRace = Engine.Assets.GetAsset<Race>("crab");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Creature crab = new Creature(crabRace);
-                new MonsterAi(crab);
-                _map.Add(crab, 10, 10);
+                Creature frog = CreatureGenerator.NewCreature("frog");
+                _map.Add(frog, _map.RandomEmptyPoint(_random));
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                Creature rat = CreatureGenerator.NewCreature("rat");
+                _map.Add(rat, _map.RandomEmptyPoint(_random));
             }
 
             _turnManager = new TurnManager<Creature>(_map.Creatures);
 
             _tileSelection = Engine.Assets.GetAsset<Sprite>("tile_selection");
-            _dot = Engine.Assets.GetAsset<Sprite>("dot");
-
-            _rain = Engine.Assets.GetAsset<Animation>("rain").NewAnimatedSprite();
 
             _soundEffectManager.LoadSoundEffect("rain_looped");
             _soundEffectManager.LoadSoundEffect("thunder_01");
 
             _soundEffectManager.Play("rain_looped", 0.4f, loop: true);
 
-            for (int x = 0; x < _map.Width; x++)
-            {
-                for (int y = 0; y < _map.Height; y++)
-                {
-                    Tile tile = _map.GetTile(x, y);
-                    if (!string.IsNullOrWhiteSpace(tile.Animation))
-                    {
-                        if (!_tileAnimations.ContainsKey(tile.Animation))
-                        {
-                            AnimatedSprite animation = Engine.Assets.GetAsset<Animation>(tile.Animation).NewAnimatedSprite();
-                            _tileAnimations.Add(tile.Animation, animation);
-                        }
-                    }
-                }
-            }
+            _camera = new Camera();
+            _camera.Zoom = 1f;
+
+            int w = Engine.Width / 8;
+            int h = Engine.Height / 8;
+
+            _camera.Origin = new Vector2(Engine.Width / 2, Engine.Height / 2);
+            _camera.X = _player.RenderX;
+            _camera.Y = _player.RenderY;
+
+
+            _mapRenderer = new MapRenderer(_map, _lightingManager, _camera);
+            _creatureRenderer = new CreatureRenderer(_map.Creatures, _map, _lightingManager, _camera);
+            _effectsRenderer = new EffectsRenderer(_map, _lightingManager, _camera);
         }
 
         public override void Input(Keys key)
@@ -102,43 +95,16 @@ namespace DungeonDelver.Core.Scenes
             _player.Input(key);
         }
 
-        private MouseState lastState;
-
         public override void Update(float delta)
         {
+            _camera.Approach(new Vector2(_player.RenderX, _player.RenderY), 0.25f);
+
             _soundEffectManager.Update();
+            _lightingManager.Update(delta);
 
-            foreach (AnimatedSprite animation in _tileAnimations.Values)
-            {
-                animation.Update(delta);
-            }
+            _mapRenderer.Update(delta);
+            _effectsRenderer.Update(delta);
 
-            //if(_random.NextDouble() < 0.001)
-            //{
-            //    brightness = (float)_random.NextDouble(maxBrightness - 0.2f, maxBrightness);
-
-            //    //thunderInstance.Play();
-            //    _soundEffectManager.Play("thunder_01", (float)_random.NextDouble(0.05, 0.25), (float)_random.NextDouble(-0.3, 0.3), (float)_random.NextDouble(-0.2, 0.1));
-            //}
-
-            //if(brightness > minBrightness)
-            //{
-            //    brightness *= 0.9f;
-
-            //    if(_random.NextDouble() < 0.04)
-            //    {
-            //        brightness += (float)_random.NextDouble(0.1, 0.3);
-            //    }
-
-            //    if (brightness < minBrightness)
-            //    {
-            //        brightness = minBrightness;
-            //    }
-            //}
-
-            MouseState state = Mouse.GetState();
-
-            _rain.Update(delta);
             _map.Update(delta);
 
             if (!_eventManager.HasEventsToProcess())
@@ -154,95 +120,21 @@ namespace DungeonDelver.Core.Scenes
             }
 
             _eventManager.Update(delta);
-
-            lastState = state;
         }
 
-        float brightness = 1f;
-
-        float minBrightness = 0.3f;
-        float maxBrightness = 2f;
-
-        public override void Render(SpriteBatch batch)
+        public override void Render()
         {
-           
-            for (int x = 0; x < _map.Width; x++)
-            {
-                for (int y = 0; y < _map.Height; y++)
-                {
-                    if (_map.IsVisible(x, y) || HideFov)
-                    {
-                        Tile tile = _map.GetTile(x, y);
-                        Sprite tileSprite = tile.Sprite;
+            _mapRenderer.Render();
+            _creatureRenderer.Render();
+            _effectsRenderer.Render();
 
-                        if (!string.IsNullOrWhiteSpace(tile.Animation))
-                        {
-                            tileSprite = _tileAnimations[tile.Animation].Sprite;
-                        }
+            //MouseState state = Mouse.GetState();
+            //int tileX = ((state.X / Engine.GameScale) / Game.SpriteWidth) * Game.SpriteWidth;
+            //int tileY = ((state.Y / Engine.GameScale) / Game.SpriteHeight) * Game.SpriteHeight;
 
-                        batch.Draw(tileSprite.Texture, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), tileSprite.Bounds, LitColor(tile.Color.Blend(Color.SlateGray, 0.85f), Color.White));
-                    }
-                    else if (_map.IsVisited(x, y) && !HideFov)
-                    {
-                        Tile tile = _map.GetTile(x, y);
-                        Sprite tileSprite = tile.Sprite;
-                        if (tileSprite != null)
-                        {
-                            batch.Draw(tileSprite.Texture, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), tileSprite.Bounds, Color.FromNonPremultiplied(30, 30, 30, 255).Darken(1f - brightness));
-                        }
-                    }
-
-                }
-            }
-
-            foreach (Creature creature in _map.Creatures)
-            {
-                if (!_map.IsVisible(creature.RenderX / Game.SpriteWidth, creature.RenderY / Game.SpriteHeight))
-                {
-                    continue;
-                }
-
-                Sprite sprite = creature.Sprite;
-                batch.Draw(sprite.Texture, new Vector2(creature.RenderX, creature.RenderY), sprite.Bounds, LitColor(creature.Color, Color.White), 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
-            }
-
-            if (ShowRain)
-            {
-                for (int y = 0; y < Engine.GameHeight / Game.SpriteHeight; y++)
-                {
-                    for (int x = 0; x < Engine.GameWidth / Game.SpriteWidth; x++)
-                    {
-                        if (_map.IsVisible(x, y) || HideFov)
-                        {
-                            batch.Draw(_rain.Sprite.Texture, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), _rain.Sprite.Bounds, LitColor(Color.DarkSlateGray * 0.9f, Color.Black));
-                        }
-                        else if (_map.IsVisited(x, y) && !HideFov)
-                        {
-                            batch.Draw(_rain.Sprite.Texture, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), _rain.Sprite.Bounds, Color.FromNonPremultiplied(79, 79, 79, 255).Darken(1f - brightness) * 0.9f);
-                        }
-                    }
-                }
-            }
-
-            MouseState state = Mouse.GetState();
-            int tileX = ((state.X / Engine.GameScale) / Game.SpriteWidth) * Game.SpriteWidth;
-            int tileY = ((state.Y / Engine.GameScale) / Game.SpriteHeight) * Game.SpriteHeight;
-
-            batch.Draw(_tileSelection.Texture, new Vector2(tileX, tileY), _tileSelection.Bounds, Color.White);
+            //Draw.Sprite(_tileSelection, new Vector2(tileX, tileY), Color.White);
+            //batch.Draw(_tileSelection.Texture, new Vector2(tileX, tileY), _tileSelection.Bounds, Color.White);
         }
-
-        private Color LitColor(Color color, Color flashColor)
-        {
-            Color newColor = color.Darken(1f - brightness);
-            //if(brightness > minBrightness)
-            //{
-            //    float flashAmount = (brightness - minBrightness) / (maxBrightness - minBrightness);
-            //    newColor = newColor.Blend(flashColor, 1f - flashAmount);
-            //}
-
-            return newColor;
-        }
-
     }
 }
 

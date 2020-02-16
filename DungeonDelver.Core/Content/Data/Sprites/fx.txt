@@ -9,6 +9,14 @@ rain_1 :: fxSprite
 	x = 1
 	y = 2
 
+rain_light_0 :: fxSprite
+	x = 9
+	y = 3
+
+rain_light_1 :: fxSprite
+	x = 8
+	y = 3
+
 splash_0 :: fxSprite
 	x = 0
 	y = 3

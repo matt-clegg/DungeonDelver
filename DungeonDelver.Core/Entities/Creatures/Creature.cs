@@ -9,8 +9,9 @@ namespace DungeonDelver.Core.Entities.Creatures
 {
     public class Creature : Entity, ITurnable
     {
-        public int RenderX { get; set; }
-        public int RenderY { get; set; }
+        public float RenderX { get; set; }
+        public float RenderY { get; set; }
+        public float RenderZ { get; set; }
 
         private readonly Energy _energy = new Energy();
         public int Speed { get; }

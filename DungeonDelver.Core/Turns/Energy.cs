@@ -38,5 +38,7 @@
         }
 
         public void Reset() => CurrentEnergy = 0;
+
+        public int GetGainValue(int speed) => EnergyGains[speed];
     }
 }

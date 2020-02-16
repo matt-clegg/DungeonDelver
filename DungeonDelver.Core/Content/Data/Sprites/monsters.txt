@@ -16,3 +16,19 @@ crab_0 :: monsterSprite
 crab_1 :: monsterSprite
 	x = 0
 	y = 5
+
+frog_0 :: monsterSprite
+	x = 10
+	y = 4
+
+frog_1 :: monsterSprite
+	x = 10
+	y = 5
+
+rat_0 :: monsterSprite
+	x = 1
+	y = 4
+
+rat_1 :: monsterSprite
+	x = 1
+	y = 5

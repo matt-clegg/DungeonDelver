@@ -1,4 +1,6 @@
-﻿using DungeonDelver.Core.Pathfinding;
+﻿using DungeonDelver.Core.Entities;
+using DungeonDelver.Core.Pathfinding;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Toolbox;
@@ -22,7 +24,7 @@ namespace DungeonDelver.Core.World.Builders
 
                     if (Random.NextDouble() < 0.3)
                     {
-                        if (Random.NextDouble() < 0.4)
+                        if (Random.NextDouble() < 0.7)
                         {
                             tile = GetRandomTile("tree_dead_a", "tree_dead_b");
                         }
@@ -46,6 +48,13 @@ namespace DungeonDelver.Core.World.Builders
                     if (Random.NextDouble() < 0.1)
                     {
                         Map.SetTile(x, y, "water");
+
+                        if(Random.NextDouble() < 0.2)
+                        {
+                            string[] names = { "lillypad_a", "lillypad_b", "lillypad_c" };
+                            Prop lillipad = new AnimatedProp(names[Random.Next(names.Length)], Color.FromNonPremultiplied(25, 123, 48, 255));
+                            Map.SetProp(x, y, lillipad);
+                        }
                     }
                 }
             }

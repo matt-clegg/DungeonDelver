@@ -1,5 +1,6 @@
 ﻿using DungeonDelver.Core.Entities.Creatures;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace DungeonDelver.Core.Events
 {
@@ -53,10 +54,13 @@ namespace DungeonDelver.Core.Events
 
                 Vector2 m1 = Vector2.Lerp(_start, _mid, _count);
                 Vector2 m2 = Vector2.Lerp(_mid, _end, _count);
-                Vector2 position = Vector2.Lerp(m1, m2, _count);
+                Vector2 jumpPosition = Vector2.Lerp(m1, m2, _count);
 
-                _creature.RenderX = (int)position.X;
-                _creature.RenderY = (int)position.Y;
+                Vector2 groundPosition = Vector2.Lerp(_start, _end, _count);
+
+                _creature.RenderX = jumpPosition.X;
+                _creature.RenderY = groundPosition.Y;
+                _creature.RenderZ = groundPosition.Y - jumpPosition.Y;
             }
 
             return _count >= 1f;

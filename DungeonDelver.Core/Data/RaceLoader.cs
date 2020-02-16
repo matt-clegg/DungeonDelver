@@ -20,7 +20,7 @@ namespace DungeonDelver.Core.Data
 
                 Animation animation = assets.GetAsset<Animation>(raceProp["animation"].Value);
 
-                Color color = ColorParser.FromName(raceProp["color"].Value);
+                Color color = ColorParser.ParseColor(raceProp["color"].Value);
 
                 Race race = new Race(name, animation, color, speed, health);
                 assets.AddAsset(name, race);

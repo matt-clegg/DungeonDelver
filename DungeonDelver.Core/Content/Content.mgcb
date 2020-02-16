@@ -13,12 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Audio/02 Rain On Foliage_01.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/02 Rain On Foliage_01.ogg;Audio/rain.ogg
-
 #begin Audio/rain_looped.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
