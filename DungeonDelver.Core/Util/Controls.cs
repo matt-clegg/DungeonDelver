@@ -9,6 +9,10 @@ namespace DungeonDelver.Core.Util
         public static readonly Control South = new Control().Bind(Keys.Down).Bind(Keys.NumPad2).Bind(Keys.S);
         public static readonly Control East = new Control().Bind(Keys.Right).Bind(Keys.NumPad6).Bind(Keys.D);
         public static readonly Control West = new Control().Bind(Keys.Left).Bind(Keys.NumPad4).Bind(Keys.A);
+        public static readonly Control NorthEast = new Control().Bind(Keys.NumPad9);
+        public static readonly Control NorthWest = new Control().Bind(Keys.NumPad7);
+        public static readonly Control SouthEast = new Control().Bind(Keys.NumPad3);
+        public static readonly Control SouthWest = new Control().Bind(Keys.NumPad1);
 
         public static readonly Control UseStairs = new Control().Bind(Keys.Space);
         public static readonly Control SelectItemDown = new Control().Bind(Keys.Q);

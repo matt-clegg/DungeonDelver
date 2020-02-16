@@ -13,14 +13,16 @@ namespace DungeonDelver.Core.World
         public Color Color { get; }
         public bool IsSolid { get; }
         public bool IsTransparent { get; }
+        public string Animation { get; }
 
-        public Tile(byte id, Sprite sprite, Color color, bool isSolid, bool isTransparent)
+        public Tile(byte id, Sprite sprite, Color color, bool isSolid, bool isTransparent, string animation)
         {
             Id = id;
             Sprite = sprite;
             Color = color;
             IsSolid = isSolid;
             IsTransparent = isTransparent;
+            Animation = animation;
 
             if (id < 0 || id >= _tiles.Length)
             {

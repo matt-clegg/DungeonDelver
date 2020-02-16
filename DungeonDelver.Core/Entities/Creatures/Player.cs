@@ -18,6 +18,10 @@ namespace DungeonDelver.Core.Entities.Creatures
             else if (Controls.South.IsPressed(key)) SetNextAction(new MoveAction(0, 1));
             else if (Controls.East.IsPressed(key)) SetNextAction(new MoveAction(1, 0));
             else if (Controls.West.IsPressed(key)) SetNextAction(new MoveAction(-1, 0));
+            else if (Controls.NorthEast.IsPressed(key)) SetNextAction(new MoveAction(1, -1));
+            else if (Controls.NorthWest.IsPressed(key)) SetNextAction(new MoveAction(-1, -1));
+            else if (Controls.SouthEast.IsPressed(key)) SetNextAction(new MoveAction(1, 1));
+            else if (Controls.SouthWest.IsPressed(key)) SetNextAction(new MoveAction(-1, 1));
         }
 
         private void SetNextAction(BaseAction action)

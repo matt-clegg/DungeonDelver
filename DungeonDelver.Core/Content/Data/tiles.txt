@@ -38,3 +38,27 @@ grass_d :: passable
 
 mushrooms :: passable
 	color = #827b00
+
+stones_a :: passable
+	color = gray
+
+stones_b :: passable
+	color = gray
+
+stones_c :: passable
+	color = gray
+
+stones_d :: passable
+	color = gray
+
+water :: blocking
+	color = #004a80
+	animation = water
+
+lillypad_a :: blocking
+	color = #7cc576
+	animation = lillypad_a
+
+lillypad_b :: blocking
+	color = #7cc576
+	animation = lillypad_b

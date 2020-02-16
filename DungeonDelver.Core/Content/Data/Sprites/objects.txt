@@ -36,3 +36,55 @@ grass_d :: objectSprite
 mushrooms :: objectSprite
 	x = 11
 	y = 6
+
+stones_a :: objectSprite
+	x = 12
+	y = 6
+
+stones_b :: objectSprite
+	x = 13
+	y = 6
+
+stones_c :: objectSprite
+	x = 14
+	y = 6
+
+stones_d :: objectSprite
+	x = 15
+	y = 6
+
+tall_grass_a :: objectSprite
+	x = 0
+	y = 10
+
+tall_grass_b :: objectSprite
+	x = 1
+	y = 10
+
+tall_grass_c :: objectSprite
+	x = 2
+	y = 10
+
+lillypad_a_0 :: objectSprite
+	x = 0
+	y = 11
+
+lillypad_a_1 :: objectSprite
+	x = 1
+	y = 11
+
+lillypad_b_0 :: objectSprite
+	x = 2
+	y = 11
+
+lillypad_b_1 :: objectSprite
+	x = 3
+	y = 11
+
+lillypad_c_0 :: objectSprite
+	x = 4
+	y = 11
+
+lillypad_c_1 :: objectSprite
+	x = 5
+	y = 11

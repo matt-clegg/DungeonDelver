@@ -15,8 +15,8 @@ floor :: environmentSprite
 
 water_0 :: environmentSprite
 	x = 0
-	y = 2
+	y = 3
 
 water_1 :: environmentSprite
 	x = 1
-	y = 2
+	y = 3

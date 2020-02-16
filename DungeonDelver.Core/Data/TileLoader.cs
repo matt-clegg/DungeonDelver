@@ -1,9 +1,6 @@
 ﻿using DungeonDelver.Core.Util;
 using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Toolbox.Assets;
 using Toolbox.Data;
 using Toolbox.Graphics;
@@ -20,14 +17,21 @@ namespace DungeonDelver.Core.Data
             {
                 string name = tileProp.Name;
                 bool isSolid = tileProp.GetOrDefault("solid", false);
-                bool isTransparent = tileProp.GetOrDefault("transparent",true);
+                bool isTransparent = tileProp.GetOrDefault("transparent", true);
                 byte id = _nextId++;
 
-                string spriteName = tileProp.GetOrDefault("sprite", name);
-                Sprite sprite = assets.GetAsset<Sprite>(spriteName);
+                string animation = tileProp.GetOrDefault("animation", null);
+                Sprite sprite = null;
+
+                if (string.IsNullOrWhiteSpace(animation))
+                {
+                    string spriteName = tileProp.GetOrDefault("sprite", name);
+                    sprite = assets.GetAsset<Sprite>(spriteName);
+                }
+
                 Color color = ColorParser.ParseColor(tileProp["color"].Value.ToLower().Trim());
 
-                Tile tile = new Tile(id, sprite, color, isSolid, isTransparent);
+                Tile tile = new Tile(id, sprite, color, isSolid, isTransparent, animation);
                 assets.AddAsset(name, tile);
             }
         }

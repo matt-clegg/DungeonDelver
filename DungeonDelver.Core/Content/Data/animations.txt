@@ -5,6 +5,12 @@
 :: fxAnimation
 	sheet = fx_general
 
+:: environmentAnimation
+	sheet = environment
+
+:: terrainObjectAnimation
+	sheet = terrain_objects
+
 player :: monsterAnimation
 	frames = player_0, player_1
 
@@ -14,3 +20,15 @@ crab :: monsterAnimation
 rain :: fxAnimation
 	frames = rain_0, rain_1
 	frameDuration = 0.2
+
+water :: environmentAnimation
+	frames = water_0, water_1
+	frameDuration = 1.25
+
+lillypad_a :: terrainObjectAnimation
+	frames = lillypad_a_0, lillypad_a_1
+	frameDuration = 0.4
+
+lillypad_b :: terrainObjectAnimation
+	frames = lillypad_b_0, lillypad_b_1
+	frameDuration = 0.4
