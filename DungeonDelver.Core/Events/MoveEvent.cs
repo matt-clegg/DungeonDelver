@@ -1,6 +1,5 @@
 ﻿using DungeonDelver.Core.Entities.Creatures;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace DungeonDelver.Core.Events
 {

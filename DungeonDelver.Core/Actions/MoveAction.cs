@@ -31,6 +31,7 @@ namespace DungeonDelver.Core.Actions
 
             if (!creature.Map.InBounds(newX, newY) || creature.Map.GetTile(newX, newY).IsSolid)
             {
+                result.AddEvent(new BumpEvent(X, Y, 9f, creature));
                 return Succeed();
             }
 
@@ -38,6 +39,7 @@ namespace DungeonDelver.Core.Actions
 
             if (other != null)
             {
+                result.AddEvent(new BumpEvent(X, Y, 9f, creature));
                 return Succeed();
             }
 

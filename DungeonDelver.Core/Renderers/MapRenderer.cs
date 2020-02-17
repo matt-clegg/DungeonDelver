@@ -55,11 +55,6 @@ namespace DungeonDelver.Core.Renderers
             {
                 for (int y = Math.Max(0, BoundsY); y <= Math.Min(_map.Height - 1, BoundsHeight); y++)
                 {
-                    //if(!InCameraBounds(x, y))
-                    //{
-                    //    continue;
-                    //}
-
                     if (_map.IsVisible(x, y) || Game.HideFov)
                     {
                         Tile tile = _map.GetTile(x, y);
@@ -102,8 +97,10 @@ namespace DungeonDelver.Core.Renderers
                             Draw.Sprite(prop.Sprite, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), color);
                         }
                     }
+
                 }
             }
+
         }
 
     }

@@ -23,6 +23,7 @@ namespace DungeonDelver.Core.Scenes
         private readonly MapRenderer _mapRenderer;
         private readonly CreatureRenderer _creatureRenderer;
         private readonly EffectsRenderer _effectsRenderer;
+        private readonly InterfaceRenderer _interfaceRenderer;
 
         private readonly Camera _camera;
         private readonly Player _player;
@@ -88,6 +89,7 @@ namespace DungeonDelver.Core.Scenes
             _mapRenderer = new MapRenderer(_map, _lightingManager, _camera);
             _creatureRenderer = new CreatureRenderer(_map.Creatures, _map, _lightingManager, _camera);
             _effectsRenderer = new EffectsRenderer(_map, _lightingManager, _camera);
+            _interfaceRenderer = new InterfaceRenderer(_map, _camera);
         }
 
         public override void Input(Keys key)
@@ -97,7 +99,10 @@ namespace DungeonDelver.Core.Scenes
 
         public override void Update(float delta)
         {
-            _camera.Approach(new Vector2(_player.RenderX, _player.RenderY), 0.25f);
+            if (!_player.UnlockCamera)
+            {
+                _camera.Approach(new Vector2(_player.RenderX, _player.RenderY), 0.25f);
+            }
 
             _soundEffectManager.Update();
             _lightingManager.Update(delta);
@@ -120,6 +125,7 @@ namespace DungeonDelver.Core.Scenes
             }
 
             _eventManager.Update(delta);
+            _interfaceRenderer.Update(delta);
         }
 
         public override void Render()
@@ -127,6 +133,8 @@ namespace DungeonDelver.Core.Scenes
             _mapRenderer.Render();
             _creatureRenderer.Render();
             _effectsRenderer.Render();
+            _interfaceRenderer.Render();
+
 
             //MouseState state = Mouse.GetState();
             //int tileX = ((state.X / Engine.GameScale) / Game.SpriteWidth) * Game.SpriteWidth;

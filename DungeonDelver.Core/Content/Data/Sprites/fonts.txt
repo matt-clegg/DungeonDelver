@@ -1,0 +1,75 @@
+﻿:: regularChar
+	sheet = font_regular_t
+	width = 5
+	height = 9
+	exact = true
+
+:: lower
+	y = 16 
+
+:: upper
+	y = 26
+
+a :: regularChar :: lower
+	x = 0
+b :: regularChar :: lower
+	x = 5
+c :: regularChar :: lower
+	x = 10
+	width = 4
+d :: regularChar :: lower
+	x = 14
+e :: regularChar :: lower
+	x = 19
+f :: regularChar :: lower
+	x = 24
+g :: regularChar :: lower
+	x = 29
+	width = 4
+h :: regularChar :: lower
+	x = 33
+i :: regularChar :: lower
+	x = 38
+	width = 2
+j :: regularChar :: lower
+	x = 40
+	width = 3
+k :: regularChar :: lower
+	x = 43
+l :: regularChar :: lower
+	x = 48
+	width = 2
+m :: regularChar :: lower
+	x = 50
+	width = 6
+n :: regularChar :: lower
+	x = 56
+o :: regularChar :: lower
+	x = 61
+p :: regularChar :: lower
+	x = 66
+q :: regularChar :: lower
+	x = 71
+r :: regularChar :: lower
+	x = 76
+	width = 4
+s :: regularChar :: lower
+	x = 80
+t :: regularChar :: lower
+	x = 85
+	width = 4
+u :: regularChar :: lower
+	x = 89
+v :: regularChar :: lower
+	x = 94
+w :: regularChar :: lower
+	x = 99
+	width = 6
+x :: regularChar :: lower
+	x = 105
+	width = 4
+y :: regularChar :: lower
+	x = 109
+z :: regularChar :: lower
+	x = 114
+

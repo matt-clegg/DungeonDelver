@@ -17,6 +17,7 @@ namespace DungeonDelver.Core.Data
             RaceLoader.Load("Content/Data/races.txt", Engine.Assets);
 
             AudioLoader.Load(Engine.Assets, Engine.Instance.Content);
+            FontLoader.Load();
         }
 
         public static Vector2? ParseVector(string input)

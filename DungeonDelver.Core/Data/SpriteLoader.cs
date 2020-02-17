@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics;
 using Toolbox.Assets;
 using Toolbox.Data;
 using Toolbox.Graphics;
@@ -20,10 +21,20 @@ namespace DungeonDelver.Core.Data
                 int y = artProp.GetOrDefault("y", 0);
                 int width = artProp.GetOrDefault("width", -1);
                 int height = artProp.GetOrDefault("height", -1);
+                bool exact = artProp.GetOrDefault("exact", false);
 
                 Vector2? origin = DataLoader.ParseVector(artProp.GetOrDefault("origin", null));
 
-                Sprite sprite = sheet.CutSprite(x, y, width, height, name, origin);
+                Sprite sprite;
+
+                if (!exact)
+                {
+                    sprite = sheet.CutSprite(x, y, width, height, name, origin);
+                }
+                else
+                {
+                    sprite = sheet.CutSpriteExact(x, y, width, height, name, origin);
+                }
                 assets.AddAsset(name, sprite);
                 Console.WriteLine($"Loaded Sprite: {name}");
             }

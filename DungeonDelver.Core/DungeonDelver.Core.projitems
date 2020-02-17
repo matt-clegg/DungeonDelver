@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\AnimationLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\AudioLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Definitions\Animation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\FontLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SpriteLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\RaceLoader.cs" />
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Creatures\Race.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Prop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\BumpEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\GameEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\GameEventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Events\MoveEvent.cs" />
@@ -44,6 +46,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pathfinding\QueueNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderers\CreatureRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderers\EffectsRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Renderers\InterfaceRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderers\MapRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Renderers\Renderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Scene.cs" />
@@ -84,6 +87,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Content\Data\Sprites\environment.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Content\Data\Sprites\fonts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Content\Data\Sprites\fx.txt">

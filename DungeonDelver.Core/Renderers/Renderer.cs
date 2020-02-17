@@ -28,7 +28,7 @@ namespace DungeonDelver.Core.Renderers
             SamplerState = SamplerState.PointClamp;
             DepthStencilState = DepthStencilState.None;
             RasterizerState = RasterizerState.CullNone;
-            SortMode = SpriteSortMode.Immediate;
+            SortMode = SpriteSortMode.FrontToBack;
             Camera = camera;
         }
 
@@ -42,15 +42,6 @@ namespace DungeonDelver.Core.Renderers
             DoRender();
             Draw.SpriteBatch.End();
         }
-
-        //protected bool InCameraBounds(int x, int y)
-        //{
-        //    int tileX = (int)((Camera.X - Engine.Width / 2) / Game.SpriteWidth);
-        //    int tileY = (int)((Camera.Y - Engine.Height / 2) / Game.SpriteHeight);
-        //    int width = tileX + (Camera.Viewport.Width / Game.SpriteWidth);
-        //    int height = tileY + (Camera.Viewport.Height / Game.SpriteHeight);
-        //    return x >= tileX && y >= tileY && x <= width && y <= height;
-        //}
     }
 }
 

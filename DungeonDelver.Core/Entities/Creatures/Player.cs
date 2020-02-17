@@ -8,6 +8,8 @@ namespace DungeonDelver.Core.Entities.Creatures
     {
         private BaseAction _nextAction;
 
+        public bool UnlockCamera { get; set; }
+
         public Player(Race race) : base(race)
         {
         }

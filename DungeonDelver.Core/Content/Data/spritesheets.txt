@@ -1,8 +1,14 @@
 ﻿:: spritesheet
 	path = Textures/
 
+:: fontSpritesheet
+	path = Textures/Fonts/
+
 environment :: spritesheet
 monsters :: spritesheet
 interface :: spritesheet
 terrain_objects :: spritesheet
 fx_general :: spritesheet
+
+font_regular_t :: fontSpritesheet
+font_thin :: fontSpritesheet

@@ -253,7 +253,7 @@
 /processorParam:TextureFormat=Color
 /build:Textures/environment.png
 
-#begin Textures/Fonts/font_regluar.png
+#begin Textures/Fonts/font_regular.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=0,0,0,0
@@ -263,12 +263,24 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/Fonts/font_regluar.png
+/build:Textures/Fonts/font_regular.png
+
+#begin Textures/Fonts/font_regular_t.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Fonts/font_regular_t.png
 
 #begin Textures/Fonts/font_thin.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyColor=0,0,0,255
 /processorParam:ColorKeyEnabled=True
 /processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True

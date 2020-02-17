@@ -278,7 +278,7 @@ namespace DungeonDelver.Core
             ViewScale = ViewWidth / (float)Width;
 
             ScreenMatrix = Matrix.CreateScale(ViewScale);
-
+            
             Viewport = new Viewport
             {
                 X = (int)(screenWidth / 2 - ViewWidth / 2f),

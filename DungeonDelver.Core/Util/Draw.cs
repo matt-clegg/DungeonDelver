@@ -9,10 +9,9 @@ namespace DungeonDelver.Core.Util
     {
         private const float DefaultThickness = 1f;
 
-        private static Rectangle _rect;
-
         public static Renderer Renderer { get; internal set; }
         public static SpriteBatch SpriteBatch { get; private set; }
+        public static Font DefaultFont { get; private set; }
 
         public static Texture2D Pixel { get; set; }
 
@@ -30,10 +29,44 @@ namespace DungeonDelver.Core.Util
             SpriteDraws++;
         }
 
+        public static void Text(string text, int x, int y, Color? color = null)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+
+            int xOffset = 0;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char character = text[i];
+
+                if(character == ' ')
+                {
+                    xOffset += 6; // TODO: get me from somewhere
+                    continue;
+                }
+
+                Sprite sprite = DefaultFont.GetSprite(character);
+
+                if (sprite != null)
+                {
+                    Sprite(sprite, new Vector2(x + xOffset, y), color ?? Color.White);
+                    xOffset += sprite.Width;
+                }
+                else
+                {
+                    xOffset += 6;
+                }
+            }
+        }
+
         internal static void Initialize(GraphicsDevice graphicsDevice)
         {
             SpriteBatch = new SpriteBatch(graphicsDevice);
             UseDebugPixelTexture(graphicsDevice);
+            DefaultFont = Engine.Assets.GetAsset<Font>("font_regular");
         }
     }
 }
