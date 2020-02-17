@@ -9,8 +9,6 @@ namespace DungeonDelver.DirectX
         [STAThread]
         static void Main()
         {
-            //const int gameWidth = 512;
-            //const int gameHeight = 256;
             const int scale = 3;
             const int width = 640;
             const int height = 360;

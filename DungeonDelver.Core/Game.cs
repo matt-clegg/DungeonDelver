@@ -8,7 +8,7 @@ namespace DungeonDelver.Core
         public const int SpriteWidth = 16;
         public const int SpriteHeight = 24;
 
-        public static bool HideFov = false;
+        public static bool HideFov = true;
         public static bool ShowRain = true;
 
         public Scene Scene { get; set; }

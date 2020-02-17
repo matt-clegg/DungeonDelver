@@ -4,6 +4,7 @@ using DungeonDelver.Core.Extensions;
 using DungeonDelver.Core.Util;
 using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Toolbox.Graphics;
 using Toolbox.Graphics.Animations;
@@ -50,15 +51,14 @@ namespace DungeonDelver.Core.Renderers
 
         protected override void DoRender()
         {
-
-            for (int x = 0; x < _map.Width; x++)
+            for (int x = Math.Max(0, BoundsX); x <= Math.Min(_map.Width - 1, BoundsWidth); x++)
             {
-                for (int y = 0; y < _map.Height; y++)
+                for (int y = Math.Max(0, BoundsY); y <= Math.Min(_map.Height - 1, BoundsHeight); y++)
                 {
-                    if(!InCameraBounds(x, y))
-                    {
-                        continue;
-                    }
+                    //if(!InCameraBounds(x, y))
+                    //{
+                    //    continue;
+                    //}
 
                     if (_map.IsVisible(x, y) || Game.HideFov)
                     {

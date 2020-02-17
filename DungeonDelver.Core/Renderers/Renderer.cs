@@ -17,6 +17,11 @@ namespace DungeonDelver.Core.Renderers
 
         public Matrix? Matrix { get; set; }
 
+        protected int BoundsX => (int)((Camera.X - Engine.Width / 2) / Game.SpriteWidth);
+        protected int BoundsY => (int)((Camera.Y - Engine.Height / 2) / Game.SpriteHeight);
+        protected int BoundsWidth => BoundsX + (Camera.Viewport.Width / Game.SpriteWidth);
+        protected int BoundsHeight => BoundsY + (Camera.Viewport.Height / Game.SpriteHeight);
+
         public Renderer(Camera camera)
         {
             BlendState = BlendState.AlphaBlend;
@@ -38,13 +43,14 @@ namespace DungeonDelver.Core.Renderers
             Draw.SpriteBatch.End();
         }
 
-        protected bool InCameraBounds(int x, int y)
-        {
-            int tileX = (int)((Camera.X - Engine.Width / 2) / Game.SpriteWidth);
-            int tileY = (int)((Camera.Y - Engine.Height / 2) / Game.SpriteHeight);
-            int width = tileX + (Camera.Viewport.Width / Game.SpriteWidth);
-            int height = tileY + (Camera.Viewport.Height / Game.SpriteHeight);
-            return x >= tileX && y >= tileY && x <= width && y <= height;
-        }
+        //protected bool InCameraBounds(int x, int y)
+        //{
+        //    int tileX = (int)((Camera.X - Engine.Width / 2) / Game.SpriteWidth);
+        //    int tileY = (int)((Camera.Y - Engine.Height / 2) / Game.SpriteHeight);
+        //    int width = tileX + (Camera.Viewport.Width / Game.SpriteWidth);
+        //    int height = tileY + (Camera.Viewport.Height / Game.SpriteHeight);
+        //    return x >= tileX && y >= tileY && x <= width && y <= height;
+        //}
     }
 }
+

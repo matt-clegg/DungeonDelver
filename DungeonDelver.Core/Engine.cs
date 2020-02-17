@@ -1,4 +1,5 @@
 ﻿using DungeonDelver.Core.Data;
+using DungeonDelver.Core.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -21,6 +22,7 @@ namespace DungeonDelver.Core
         public static int Height { get; private set; }
         public static int ViewWidth { get; private set; }
         public static int ViewHeight { get; private set; }
+        public static bool Fullscreen { get; private set; }
         public static int ViewPadding {
             get => _viewPadding;
             set {
@@ -52,6 +54,9 @@ namespace DungeonDelver.Core
         private static int _viewPadding;
         private static bool _resizing;
 
+        private static int _originalViewWidth;
+        private static int _originalViewHeight;
+
         private readonly DelayedInputHandler _inputHandler = new DelayedInputHandler(20);
         private Game _game;
 
@@ -67,7 +72,9 @@ namespace DungeonDelver.Core
             Height = height;
             Scale = scale;
             Window.Title = Title = title;
-
+            Fullscreen = fullscreen;
+            _originalViewWidth = windowWidth;
+            _originalViewHeight = windowHeight;
 
             Graphics = new GraphicsDeviceManager(this)
             {
@@ -132,6 +139,26 @@ namespace DungeonDelver.Core
         private void OnInputEvent(object sender, KeyEventArgs e)
         {
             _game.Input(e.Key);
+
+            if (Controls.F11.IsPressed(e.Key))
+            {
+                Fullscreen = !Fullscreen;
+                if (Fullscreen)
+                {
+                    SetFullscreen();
+                }
+                else
+                {
+                    SetWindowed(_originalViewWidth, _originalViewHeight);
+                }
+            }
+
+#if !CONSOLE
+            if (Controls.Escape.IsPressed(e.Key))
+            {
+                Exit();
+            }
+#endif
         }
 
         protected override void Update(GameTime gameTime)

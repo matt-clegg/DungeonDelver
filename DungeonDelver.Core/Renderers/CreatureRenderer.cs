@@ -41,5 +41,10 @@ namespace DungeonDelver.Core.Renderers
                 //batch.Draw(sprite.Texture, new Vector2(creature.RenderX, creature.RenderY), sprite.Bounds, LitColor(creature.Color, Color.White), 0f, sprite.Origin, 1f, creature.SpriteEffect, 0);
             }
         }
+
+        private bool InCameraBounds(int x, int y)
+        {
+            return x >= BoundsX && y >= BoundsY && x <= BoundsWidth && y <= BoundsHeight;
+        }
     }
 }

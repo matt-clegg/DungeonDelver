@@ -3,6 +3,7 @@ using DungeonDelver.Core.Extensions;
 using DungeonDelver.Core.Util;
 using DungeonDelver.Core.World;
 using Microsoft.Xna.Framework;
+using System;
 using Toolbox.Graphics.Animations;
 
 namespace DungeonDelver.Core.Renderers
@@ -34,15 +35,10 @@ namespace DungeonDelver.Core.Renderers
                 return;
             }
 
-            for (int x = 0; x < _map.Width; x++)
+            for (int x = Math.Max(0, BoundsX); x <= Math.Min(_map.Width - 1, BoundsWidth); x++)
             {
-                for (int y = 0; y < _map.Height; y++)
+                for (int y = Math.Max(0, BoundsY); y <= Math.Min(_map.Height - 1, BoundsHeight); y++)
                 {
-                    if(!InCameraBounds(x, y))
-                    {
-                        continue;
-                    }
-
                     if (_map.IsVisible(x, y) || Game.HideFov)
                     {
                         Draw.Sprite(_rain.Sprite, new Vector2(x * Game.SpriteWidth, y * Game.SpriteHeight), _lightingManager.GetLitColor(Color.DarkSlateGray * 0.9f, Color.Black));

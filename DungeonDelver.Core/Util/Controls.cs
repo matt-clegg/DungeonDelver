@@ -30,6 +30,9 @@ namespace DungeonDelver.Core.Util
         public static readonly Control Seven = new Control().Bind(Keys.D7);
         public static readonly Control Eight = new Control().Bind(Keys.D8);
         public static readonly Control Nine = new Control().Bind(Keys.D9);
+
+        public static readonly Control Escape = new Control().Bind(Keys.Escape);
+        public static readonly Control F11 = new Control().Bind(Keys.F11);
     }
 
     public class Control
